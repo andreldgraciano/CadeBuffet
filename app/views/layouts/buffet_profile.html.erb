@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CadeBuffet</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="header_nav">
+        <% if Buffet.find_by(buffet_profile_id: current_buffet_profile.id) %>
+          <p style="font-weight: bold;"> <%= Buffet.find_by(buffet_profile_id: current_buffet_profile.id).brand_name %> </p>
+        <% end %>
+        <%= button_to 'Sign out', destroy_buffet_profile_session_path, method: :delete %>
+      </nav>
+    </header>
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      
+      <%= yield %>
+    </main>
+    <footer>
+
+    </footer>
+  </body>
+</html>

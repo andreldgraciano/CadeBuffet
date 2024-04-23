@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'home/buffet_profile'
   get 'home/client'
+
+  resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
 end

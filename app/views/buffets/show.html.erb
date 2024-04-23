@@ -1,0 +1,16 @@
+<h1><%= Buffet.model_name.human %> <%= @buffet.brand_name %></h1>
+
+<p><%= Buffet.human_attribute_name(:corporate_name) %>: <%= @buffet.corporate_name %></p>
+<p><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></p>
+<p><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></p>
+<p><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></p>
+<p><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></p>
+<p><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></p>
+<p><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></p>
+<p><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></p>
+<p><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></p>
+<p><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></p>
+<p><%= Buffet.human_attribute_name(:payment_id) %>: <%= @buffet.payment.payment_type %></p>
+<p><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></p>
+
+<%= link_to 'Editar', edit_buffet_path(@buffet) %>

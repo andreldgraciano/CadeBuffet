@@ -1,0 +1,63 @@
+<%= form_with(model: @buffet) do |form| %>
+  <div>
+    <%= form.label :brand_name %>
+    <%= form.text_field :brand_name %>
+  </div>
+
+  <div>
+    <%= form.label :corporate_name %>
+    <%= form.text_field :corporate_name %>
+  </div>
+
+  <div>
+    <%= form.label :registration_number %>
+    <%= form.number_field :registration_number %>
+  </div>
+
+  <div>
+    <%= form.label :phone %>
+    <%= form.number_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :district %>
+    <%= form.text_field :district %>
+  </div>
+
+  <div>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :zip_code %>
+    <%= form.number_field :zip_code %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :payment_id %>
+    <%= form.collection_select :payment_id, @payments, :id, :payment_type %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

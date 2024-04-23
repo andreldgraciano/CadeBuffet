@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_112039) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_234859) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +23,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_112039) do
     t.index ["reset_password_token"], name: "index_buffet_profiles_on_reset_password_token", unique: true
   end
 
+  create_table "buffets", force: :cascade do |t|
+    t.string "brand_name"
+    t.string "corporate_name"
+    t.integer "registration_number"
+    t.integer "phone"
+    t.string "email"
+    t.string "address"
+    t.string "district"
+    t.string "state"
+    t.string "city"
+    t.integer "zip_code"
+    t.text "description"
+    t.integer "payment_id", null: false
+    t.integer "buffet_profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buffet_profile_id"], name: "index_buffets_on_buffet_profile_id"
+    t.index ["payment_id"], name: "index_buffets_on_payment_id"
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,8 +51,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_112039) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "cpf"
     t.index ["email"], name: "index_clients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "payment_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "buffets", "buffet_profiles"
+  add_foreign_key "buffets", "payments"
 end
