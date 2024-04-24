@@ -10,12 +10,9 @@ class HomeController < ApplicationController
     end
   end
 
-  def buffet_profile
+  def buffet_profile; end
 
-  end
-
-  def client
-  end
+  def client; end
 
   private
 

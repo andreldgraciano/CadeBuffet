@@ -23,13 +23,13 @@ class Client < ApplicationRecord
                 soma = valor[0]*11+valor[1]*10+valor[2]*9+valor[3]*8+valor[4]*7+valor[5]*6+valor[6]*5+valor[7]*4+valor[8]*3+valor[9]*2
                 soma = soma - (11 * (soma/11))
                 resultado2 = (soma == 0 or soma == 1) ? 0 : 11 - soma
-                self.cpf = cpf if resultado2 == valor[10] # Atribui o CPF válido de volta a self.cpf
-                return true if resultado2 == valor[10] # CPF válido
+                self.cpf = cpf if resultado2 == valor[10]
+                return true if resultado2 == valor[10]
             end
         end
     end
     self.cpf = nil
-    return false # CPF inválido
+    return false
   end
 
 end

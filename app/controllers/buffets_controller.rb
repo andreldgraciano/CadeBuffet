@@ -52,7 +52,6 @@ class BuffetsController < ApplicationController
   end
 
   def set_buffet_profile
-    # @buffet_profile = BuffetProfile.find(params[:id])
     @buffet_profile = BuffetProfile.find(@buffet.buffet_profile_id)
   end
 
