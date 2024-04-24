@@ -1,35 +1,22 @@
 class BuffetsController < ApplicationController
-  before_action(:set_buffet, only: [:show, :edit, :update])
-  before_action(:authenticate_buffet_profile!, only: [:show, :new, :create, :edit, :update])
+  before_action :set_buffet, only: [:show, :edit, :update]
 
-  # if buffet_profile_signed_in?
-  #   @buffet_profile = current_buffet_profile
-  #   if Buffet.exists?(buffet_profile_id: @buffet_profile.id)
-  #     before_action(:authenticate_buffet_profile!, only: [:show, :edit, :update])
-  #   else
-  #     before_action(:authenticate_buffet_profile!, only: [:new, :create])
-  #     redirect_to new_buffet_path
-  #   end
-  # else client_signed_in?
-  #   before_action(:authenticate_client!, only: [:index])
-  # end
+  before_action :set_buffet_profile, only: [:show, :edit, :update]
+  before_action :authorize_buffet_access, only: [:show, :edit, :update]
+  before_action :authorize_buffet_new_create, only: [:new, :create]
 
   def index
     @buffets = Buffet.all
   end
 
-  def show
-
-  end
+  def show; end
 
   def new
-    already_buffet()
     @buffet = Buffet.new
     @payments = Payment.all
   end
 
   def create
-    already_buffet()
     @buffet = Buffet.new(buffet_params())
     @buffet.buffet_profile = current_buffet_profile
 
@@ -54,7 +41,7 @@ class BuffetsController < ApplicationController
     else
       @payments = Payment.all
       flash.now[:notice] = 'Buffet não pôde ser atualizado.'
-      return render('edit')
+      render('edit')
     end
   end
 
@@ -64,22 +51,25 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.find(params[:id])
   end
 
+  def set_buffet_profile
+    # @buffet_profile = BuffetProfile.find(params[:id])
+    @buffet_profile = BuffetProfile.find(@buffet.buffet_profile_id)
+  end
+
   def buffet_params
     params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment_id)
   end
 
-  def already_buffet
+  def authorize_buffet_new_create
     if buffet_profile_signed_in?
-      @buffet_profile = current_buffet_profile
-      if Buffet.exists?(buffet_profile_id: @buffet_profile.id)
-        buffet = Buffet.find_by(buffet_profile_id: @buffet_profile.id)
-        flash[:notice] = 'Você já cadastrou o seu biffet!'
-        redirect_to buffet_path(buffet)
-      end
+        redirect_to root_path, alert: 'Você já cadastrou o seu biffet!' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
     else
-      flash[:notice] = 'Você não tem permissão para cadastrar um biffet!'
-      redirect_to buffets_path
+      redirect_to buffets_path, alert: 'Você não tem permissão para cadastrar um biffet!'
     end
+  end
+
+  def authorize_buffet_access
+    redirect_to root_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
   end
 
 end
