@@ -1,0 +1,12 @@
+<h1>Registrar Evento</h1>
+
+<% if @event.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% @event.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= render('form') %>

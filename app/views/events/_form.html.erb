@@ -1,0 +1,53 @@
+<%= form_with(model: @event) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :min_people %>
+    <%= form.number_field :min_people %>
+  </div>
+
+  <div>
+    <%= form.label :max_peaple %>
+    <%= form.number_field :max_peaple %>
+  </div>
+
+  <div>
+    <%= form.label :duration %>
+    <%= form.number_field :duration %>
+  </div>
+
+  <div>
+    <%= form.label :menu %>
+    <%= form.text_area :menu %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :alcoholic_drink %>
+    <%= form.text_field :alcoholic_drink %>
+  </div>
+
+  <div>
+    <%= form.label :decoration %>
+    <%= form.text_field :decoration %>
+  </div>
+
+  <div>
+    <%= form.label :parking %>
+    <%= form.text_field :parking %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

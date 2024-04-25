@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get 'home/client'
 
   resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
+  resources :events, only: [:show, :new, :create, :edit, :update]
 end

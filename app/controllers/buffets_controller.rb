@@ -1,16 +1,17 @@
 class BuffetsController < ApplicationController
   before_action :set_buffet, only: [:show, :edit, :update]
-
   before_action :set_buffet_profile, only: [:show, :edit, :update]
+  before_action :set_buffet_profile_buffet_event, only: [:show, :edit, :update]
+
   before_action :authorize_buffet_access, only: [:show, :edit, :update]
   before_action :authorize_buffet_new_create, only: [:new, :create]
 
   def index
-    @buffets = Buffet.all
-
     if buffet_profile_signed_in?
       redirect_buffet_profile_to_buffets_or_new
     end
+
+    @buffets = Buffet.all
   end
 
   def show; end
@@ -21,7 +22,7 @@ class BuffetsController < ApplicationController
   end
 
   def create
-    @buffet = Buffet.new(buffet_params())
+    @buffet = Buffet.new(buffet_params)
     @buffet.buffet_profile = current_buffet_profile
 
     if @buffet.save
@@ -39,7 +40,7 @@ class BuffetsController < ApplicationController
   end
 
   def update
-    if @buffet.update(buffet_params())
+    if @buffet.update(buffet_params)
       flash[:notice] = 'Buffet atualizado com sucesso!'
       redirect_to(@buffet)
     else
@@ -51,7 +52,7 @@ class BuffetsController < ApplicationController
 
   private
 
-  def set_buffet()
+  def set_buffet
     @buffet = Buffet.find(params[:id])
   end
 
@@ -75,11 +76,15 @@ class BuffetsController < ApplicationController
     redirect_to root_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
   end
 
+  def set_buffet_profile_buffet_event
+    @events = @buffet_profile.buffet.events
+  end
+
   def redirect_buffet_profile_to_buffets_or_new
-    buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
+    @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
     if buffet
-      redirect_to buffet_path(buffet)
+      redirect_to buffet_path(@buffet)
     else
       flash[:notice] = 'Cadastre seu buffet!'
       redirect_to new_buffet_path

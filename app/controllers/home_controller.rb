@@ -17,10 +17,10 @@ class HomeController < ApplicationController
   private
 
   def redirect_to_buffet_or_create
-    buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
+    @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
-    if buffet
-      redirect_to buffet_path(buffet)
+    if @buffet
+      redirect_to buffet_path(@buffet)
     else
       flash[:notice] = 'Cadastre seu buffet!'
       redirect_to new_buffet_path
