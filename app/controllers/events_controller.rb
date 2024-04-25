@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    #so pode editar se o buffet_profile for o mesmo do referenciado pelo buffet do evento.
   end
 
   def update
@@ -35,7 +36,8 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = current_buffet_profile.buffet.events.find(params[:id])
+    #fix that
+    #@event = current_buffet_profile.buffet.events.find(params[:id])
   end
 
   def set_buffet

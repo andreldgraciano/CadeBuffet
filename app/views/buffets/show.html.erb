@@ -27,17 +27,17 @@
       <% if @events.any? %>
         <% @events.each do |event|%>
         <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem;">
-          <h2><%= Buffet.human_attribute_name(:name) %>: <%= event.name %></h2>
+          <h2><%= Event.human_attribute_name(:name) %>: <%= event.name %></h2>
           <ul>
-            <li><%= Buffet.human_attribute_name(:description) %>: <%= event.description %></li>
-            <li><%= Buffet.human_attribute_name(:min_people) %>: <%= event.min_people %></li>
-            <li><%= Buffet.human_attribute_name(:max_peaple) %>: <%= event.max_peaple %></li>
-            <li><%= Buffet.human_attribute_name(:duration) %>: <%= event.duration %></li>
-            <li><%= Buffet.human_attribute_name(:menu) %>: <%= event.menu %></li>
-            <li><%= Buffet.human_attribute_name(:address) %>: <%= event.address %></li>
-            <li><%= Buffet.human_attribute_name(:alcoholic_drink) %>: <%= event.alcoholic_drink %></li>
-            <li><%= Buffet.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
-            <li><%= Buffet.human_attribute_name(:parking) %>: <%= event.parking %></li>
+            <li><%= Event.human_attribute_name(:description) %>: <%= event.description %></li>
+            <li><%= Event.human_attribute_name(:min_people) %>: <%= event.min_people %></li>
+            <li><%= Event.human_attribute_name(:max_peaple) %>: <%= event.max_peaple %></li>
+            <li><%= Event.human_attribute_name(:duration) %>: <%= event.duration %></li>
+            <li><%= Event.human_attribute_name(:menu) %>: <%= event.menu %></li>
+            <li><%= Event.human_attribute_name(:address) %>: <%= event.address %></li>
+            <li><%= Event.human_attribute_name(:alcoholic_drink) %>: <%= event.alcoholic_drink %></li>
+            <li><%= Event.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
+            <li><%= Event.human_attribute_name(:parking) %>: <%= event.parking %></li>
           </ul>
         </div>
         <% end %>
