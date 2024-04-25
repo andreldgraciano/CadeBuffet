@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   def index
     if buffet_profile_signed_in?
       redirect_to_buffet_or_create
-    elsif client_signed_in?
+    else
       redirect_to(buffets_path)
     end
   end
@@ -17,8 +17,7 @@ class HomeController < ApplicationController
   private
 
   def redirect_to_buffet_or_create
-    @buffet_profile = current_buffet_profile
-    buffet = Buffet.find_by(buffet_profile_id: @buffet_profile.id)
+    buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
     if buffet
       redirect_to buffet_path(buffet)

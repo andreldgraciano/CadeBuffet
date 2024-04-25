@@ -7,6 +7,10 @@ class BuffetsController < ApplicationController
 
   def index
     @buffets = Buffet.all
+
+    if buffet_profile_signed_in?
+      redirect_buffet_profile_to_buffets_or_new
+    end
   end
 
   def show; end
@@ -69,6 +73,17 @@ class BuffetsController < ApplicationController
 
   def authorize_buffet_access
     redirect_to root_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
+  end
+
+  def redirect_buffet_profile_to_buffets_or_new
+    buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
+
+    if buffet
+      redirect_to buffet_path(buffet)
+    else
+      flash[:notice] = 'Cadastre seu buffet!'
+      redirect_to new_buffet_path
+    end
   end
 
 end

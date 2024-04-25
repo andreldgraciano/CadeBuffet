@@ -10,7 +10,11 @@
   </head>
 
   <body>
-    <header>
+    <header id="header">
+      <div class="header_logo">
+        <h1>CADE BUFFET?</h1>
+      </div>
+
       <nav class="header_nav">
         <p style="font-weight: bold;"><%= current_client.name %></p>
         <%= button_to 'Sign out', destroy_client_session_path, method: :delete %>
@@ -19,7 +23,7 @@
     <main>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      
+
       <%= yield %>
     </main>
     <footer>

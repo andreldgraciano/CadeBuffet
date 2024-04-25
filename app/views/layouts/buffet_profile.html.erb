@@ -10,7 +10,11 @@
   </head>
 
   <body>
-    <header>
+    <header id="header">
+      <div class="header_logo">
+        <h1>CADE BUFFET?</h1>
+      </div>
+
       <nav class="header_nav">
         <% if Buffet.find_by(buffet_profile_id: current_buffet_profile.id) %>
           <p style="font-weight: bold;"> <%= Buffet.find_by(buffet_profile_id: current_buffet_profile.id).brand_name %> </p>
