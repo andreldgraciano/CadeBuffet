@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   before_action :authenticate_buffet_profile!, only: [:buffet_profile]
-  # before_action :authenticate_client!, only: [:client]
 
   def index
     if buffet_profile_signed_in?

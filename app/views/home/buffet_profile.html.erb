@@ -17,8 +17,8 @@
   </section>
   <section style="flex-grow: 1;">
     <div>
-      <h3 style="margin-bottom: 1rem; background-color: rgb(191, 104, 121); border-radius: 5px; padding: 5px 15px; display: inline-block">
-        <%= link_to 'Cadastrar Evento +', new_event_path %>
+      <h3 style="margin: 1rem 0; background-color: rgb(191, 104, 121); border-radius: 5px; padding: 5px 15px; display: inline-block;">
+        <%= link_to 'Cadastrar Evento +', new_event_path%>
       </h3>
       
     </div>
@@ -38,6 +38,9 @@
             <li><%= Event.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
             <li><%= Event.human_attribute_name(:parking) %>: <%= event.parking %></li>
           </ul>
+          <%= link_to 'Editar Evento', home_buffet_profile_path %>
+          <br><br>
+          <%= button_to 'Remover Evento', home_buffet_profile_path %>
         </div>
         <% end %>
       <% else %>
