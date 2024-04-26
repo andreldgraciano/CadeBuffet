@@ -1,27 +1,24 @@
 class HomeController < ApplicationController
   before_action :authenticate_buffet_profile!, only: [:buffet_profile]
-  before_action :authenticate_client!, only: [:client]
+  # before_action :authenticate_client!, only: [:client]
 
   def index
     if buffet_profile_signed_in?
-      redirect_to_buffet_or_create
-    else
-      redirect_to(buffets_path)
+      redirect_to home_buffet_profile_path
     end
+    @buffets = Buffet.all
   end
 
-  def buffet_profile; end
-
-  def client; end
+  def buffet_profile
+    redirect_to_root_or_create
+  end
 
   private
 
-  def redirect_to_buffet_or_create
+  def redirect_to_root_or_create
     @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
-    if @buffet
-      redirect_to buffet_path(@buffet)
-    else
+    if !@buffet
       flash[:notice] = 'Cadastre seu buffet!'
       redirect_to new_buffet_path
     end

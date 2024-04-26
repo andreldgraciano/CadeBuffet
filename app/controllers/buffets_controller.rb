@@ -1,20 +1,10 @@
 class BuffetsController < ApplicationController
-  before_action :set_buffet, only: [:show, :edit, :update]
-  before_action :set_buffet_profile, only: [:show, :edit, :update]
-  before_action :set_buffet_profile_buffet_event, only: [:show, :edit, :update]
+  before_action :set_buffet, only: [:edit, :update]
+  before_action :set_buffet_profile, only: [:edit, :update]
+  before_action :set_buffet_profile_buffet_event, only: [:edit, :update]
 
-  before_action :authorize_buffet_access, only: [:show, :edit, :update]
+  before_action :authorize_buffet_edit_update, only: [:edit, :update]
   before_action :authorize_buffet_new_create, only: [:new, :create]
-
-  def index
-    if buffet_profile_signed_in?
-      redirect_buffet_profile_to_buffets_or_new
-    end
-
-    @buffets = Buffet.all
-  end
-
-  def show; end
 
   def new
     @buffet = Buffet.new
@@ -27,7 +17,7 @@ class BuffetsController < ApplicationController
 
     if @buffet.save
       flash[:notice] = 'Buffet cadastrado com sucesso!'
-      redirect_to(@buffet)
+      redirect_to(home_buffet_profile_path)
     else
       @payments = Payment.all
       flash.now[:notice] = 'Buffet não cadastrado.'
@@ -42,7 +32,7 @@ class BuffetsController < ApplicationController
   def update
     if @buffet.update(buffet_params)
       flash[:notice] = 'Buffet atualizado com sucesso!'
-      redirect_to(@buffet)
+      redirect_to(home_buffet_profile_path)
     else
       @payments = Payment.all
       flash.now[:notice] = 'Buffet não pôde ser atualizado.'
@@ -52,12 +42,16 @@ class BuffetsController < ApplicationController
 
   private
 
+  def set_buffet_profile
+    @buffet_profile = BuffetProfile.find(@buffet.buffet_profile_id)
+  end
+
   def set_buffet
     @buffet = Buffet.find(params[:id])
   end
 
-  def set_buffet_profile
-    @buffet_profile = BuffetProfile.find(@buffet.buffet_profile_id)
+  def set_buffet_profile_buffet_event
+    @events = @buffet_profile.buffet.events
   end
 
   def buffet_params
@@ -65,30 +59,10 @@ class BuffetsController < ApplicationController
   end
 
   def authorize_buffet_new_create
-    if buffet_profile_signed_in?
-        redirect_to root_path, alert: 'Você já cadastrou o seu biffet!' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
-    else
-      redirect_to buffets_path, alert: 'Você não tem permissão para cadastrar um biffet!'
-    end
+    redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu biffet!' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
   end
 
-  def authorize_buffet_access
-    redirect_to root_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
+  def authorize_buffet_edit_update
+    redirect_to home_buffet_profile_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
   end
-
-  def set_buffet_profile_buffet_event
-    @events = @buffet_profile.buffet.events
-  end
-
-  def redirect_buffet_profile_to_buffets_or_new
-    @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
-
-    if buffet
-      redirect_to buffet_path(@buffet)
-    else
-      flash[:notice] = 'Cadastre seu buffet!'
-      redirect_to new_buffet_path
-    end
-  end
-
 end

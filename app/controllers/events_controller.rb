@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_action :set_buffet, only: [:new, :create, :edit, :update]
   # before_action :set_event, only: [:new, :create, :edit, :update]
 
+  before_action :authorize_buffet_profile_edit_update_own_event, only: [:edit, :update]
+
   def new
     @event = Event.new
   end
@@ -12,7 +14,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:notice] = 'Evento cadastrado com sucesso!'
-      redirect_to(@buffet)
+      redirect_to(home_buffet_profile_path)
     else
       flash.now[:notice] = 'Evento não cadastrado.'
       return render('new')
@@ -26,7 +28,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       flash[:notice] = 'evento atualizado com sucesso!'
-      redirect_to(@buffet)
+      redirect_to(home_buffet_profile_path)
     else
       flash.now[:notice] = 'evento não pôde ser atualizado.'
       render('edit')
@@ -46,5 +48,10 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :description, :min_people, :max_peaple, :duration, :menu, :address, :alcoholic_drink, :decoration, :parking)
+  end
+
+  def authorize_buffet_profile_edit_update_own_event
+    # corrigir acesso para conferir se o evento editado é do dono
+    # redirect_to home_buffet_profile_path, alert: 'Você não tem acesso a esse evento!' unless @buffet_profile == current_buffet_profile
   end
 end

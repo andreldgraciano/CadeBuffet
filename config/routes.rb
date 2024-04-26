@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   get 'home/buffet_profile'
-  get 'home/client'
+  # get 'home/client'
+  #implementar funcionalidades de cliente na home dele.
 
-  resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
-  resources :events, only: [:show, :new, :create, :edit, :update]
+  resources :buffets, only: [:new, :create, :edit, :update], constraints: { user_type: 'buffet_profile' }
+  resources :events, only: [:show, :new, :create, :edit, :update], constraints: { user_type: 'buffet_profile' }
 end
