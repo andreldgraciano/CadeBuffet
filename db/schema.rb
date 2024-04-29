@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_033059) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_29_034614) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,12 +72,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_033059) do
     t.datetime "updated_at", null: false
     t.integer "buffet_id", null: false
     t.string "venue_preference", default: "exclusivamente no endereço do buffet"
-    t.integer "base_price", default: 5000
-    t.integer "additional_per_person", default: 70
-    t.integer "extra_hour", default: 1200
-    t.integer "base_price_weekend", default: 9000
-    t.integer "additional_per_person_weekend", default: 130
-    t.integer "extra_hour_weekend", default: 2300
+    t.integer "base_price"
+    t.integer "additional_per_person"
+    t.integer "extra_hour"
+    t.integer "base_price_weekend"
+    t.integer "additional_per_person_weekend"
+    t.integer "extra_hour_weekend"
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 
