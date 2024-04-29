@@ -1,1 +1,50 @@
-<h1>NÃO ERA PRA ENTRAR AQUI, BUFFET AINDA NAO TEM SHOW</h1>
+<div style="display: flex; gap: 5rem;">
+  <section>
+    <h2><%= Buffet.human_attribute_name(:brand_name) %>: <%= @buffet.brand_name %></h2>
+      <ul>
+        <li><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></li>
+        <li><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></li>
+        <li><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></li>
+        <li><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></li>
+        <li><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></li>
+        <li><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></li>
+        <li><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></li>
+        <li><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></li>
+        <li><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></li>
+        <li><%= Buffet.human_attribute_name(:payment_id) %>: <%= @buffet.payment.payment_type %></li>
+        <li><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></li>
+      </ul>
+  </section>
+    
+  <section style="display: flex; gap: 1rem;">
+    <% if @buffet.events.any? %>
+      <% @buffet.events.each do |event|%>
+      <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem; margin: 1rem 0; max-width: 400px;">
+        <h2><%= Event.human_attribute_name(:name) %>: <%= event.name %></h2>
+        <ul>
+          <li><%= Event.human_attribute_name(:description) %>: <%= event.description %></li>
+          <li><%= Event.human_attribute_name(:min_people) %>: <%= event.min_people %></li>
+          <li><%= Event.human_attribute_name(:max_peaple) %>: <%= event.max_peaple %></li>
+          <li><%= Event.human_attribute_name(:duration) %>: <%= event.duration %></li>
+          <li><%= Event.human_attribute_name(:base_price) %>: <%= event.base_price %></li>
+          <li><%= Event.human_attribute_name(:additional_per_person) %>: <%= event.additional_per_person %></li>
+          <li><%= Event.human_attribute_name(:extra_hour) %>: <%= event.extra_hour %></li>
+          <li><%= Event.human_attribute_name(:base_price_weekend) %>: <%= event.base_price_weekend %></li>
+          <li><%= Event.human_attribute_name(:additional_per_person_weekend) %>: <%= event.additional_per_person_weekend %></li>
+          <li><%= Event.human_attribute_name(:extra_hour_weekend) %>: <%= event.extra_hour_weekend %></li>
+          <li><%= Event.human_attribute_name(:menu) %>: <%= event.menu %></li>
+          <li><%= Event.human_attribute_name(:address) %>: <%= event.address %></li>
+          <li><%= Event.human_attribute_name(:venue_preference) %>: <%= event.venue_preference %></li>
+          <li><%= Event.human_attribute_name(:alcoholic_drink) %>: <%= event.alcoholic_drink %></li>
+          <li><%= Event.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
+          <li><%= Event.human_attribute_name(:parking) %>: <%= event.parking %></li>
+        </ul>
+      </div>
+      <% end %>
+    <% else %>
+      <p style="border: 2px solid rgb(191, 104, 121);">Não existem eventos cadastrados para este @buffet.</p>
+    <% end %>
+  </section>
+</div>
+<br>
+<%= link_to 'Voltar', root_path %>

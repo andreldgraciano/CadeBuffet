@@ -1,10 +1,15 @@
 class BuffetsController < ApplicationController
-  before_action :set_buffet, only: [:edit, :update]
+  before_action :set_buffet, only: [:show, :edit, :update]
   before_action :set_buffet_profile, only: [:edit, :update]
   before_action :set_buffet_profile_buffet_event, only: [:edit, :update]
 
   before_action :authorize_buffet_edit_update, only: [:edit, :update]
   before_action :authorize_buffet_new_create, only: [:new, :create]
+  before_action :authorize_buffet_show, only: [:show]
+
+  def show
+
+  end
 
   def new
     @buffet = Buffet.new
@@ -56,6 +61,10 @@ class BuffetsController < ApplicationController
 
   def buffet_params
     params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment_id)
+  end
+
+  def authorize_buffet_show
+    redirect_to home_buffet_profile_path, alert: 'Você só pode acessar o seu buffet!' unless !current_buffet_profile
   end
 
   def authorize_buffet_new_create

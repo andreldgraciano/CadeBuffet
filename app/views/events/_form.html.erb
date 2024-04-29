@@ -23,6 +23,36 @@
     <%= form.label :duration %>
     <%= form.number_field :duration %>
   </div>
+  
+  <div>
+    <%= form.label :base_price %>
+    <%= form.number_field :base_price %>
+  </div>
+  
+  <div>
+    <%= form.label :additional_per_person %>
+    <%= form.number_field :additional_per_person %>
+  </div>
+  
+  <div>
+    <%= form.label :extra_hour %>
+    <%= form.number_field :extra_hour %>
+  </div>
+  
+  <div>
+    <%= form.label :base_price_weekend %>
+    <%= form.number_field :base_price_weekend %>
+  </div>
+  
+  <div>
+    <%= form.label :additional_per_person_weekend %>
+    <%= form.number_field :additional_per_person_weekend %>
+  </div>
+  
+  <div>
+    <%= form.label :extra_hour_weekend %>
+    <%= form.number_field :extra_hour_weekend %>
+  </div>
 
   <div>
     <%= form.label :menu %>
@@ -32,6 +62,11 @@
   <div>
     <%= form.label :address %>
     <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :venue_preference %>
+    <%= form.select :venue_preference, options_for_select([['exclusivamente no endereço do buffet', 'exclusivamente no endereço do buffet'], ['pode ser feito em um endereço indicado pelo contratante', 'pode ser feito em um endereço indicado pelo contratante']]) %>
   </div>
 
   <div>

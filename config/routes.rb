@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   # get 'home/client'
   #implementar funcionalidades de cliente na home dele.
 
-  resources :buffets, only: [:new, :create, :edit, :update], constraints: { user_type: 'buffet_profile' }
-  resources :events, only: [:show, :new, :create, :edit, :update], constraints: { user_type: 'buffet_profile' }
+  resources :buffets, only: [:show, :new, :create, :edit, :update], constraints: { user_type: 'buffet_profile' }
+  resources :events, only: [:show, :new, :create, :edit, :update, :destroy], constraints: { user_type: 'buffet_profile' }
 end
