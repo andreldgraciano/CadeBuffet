@@ -15,7 +15,7 @@
         <h1>CADE BUFFET?</h1>
       </div>
 
-      <nav class="header_nav">
+      <nav class="header_nav" id="client_session">
         <p style="font-weight: bold;"><%= current_client.name %></p>
         <%= button_to 'Sign out', destroy_client_session_path, method: :delete %>
       </nav>

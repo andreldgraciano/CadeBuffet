@@ -15,7 +15,7 @@
         <h1>CADE BUFFET?</h1>
       </div>
 
-      <nav class="header_nav">
+      <nav class="header_nav" id="buffet_profile_session">
         <% if Buffet.find_by(buffet_profile_id: current_buffet_profile.id) %>
           <p style="font-weight: bold;"> <%= Buffet.find_by(buffet_profile_id: current_buffet_profile.id).brand_name %> </p>
         <% end %>

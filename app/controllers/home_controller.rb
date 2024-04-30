@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     if buffet_profile_signed_in?
       redirect_to home_buffet_profile_path
     end
-    @buffets = Buffet.all
+    @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
   end
 
   def buffet_profile

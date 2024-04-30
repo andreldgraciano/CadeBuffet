@@ -5,14 +5,14 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, :cpf, presence: true
-  before_validation :check_cpf
+  validate :validate_cpf
 
   private
 
   def check_cpf(cpf = self.cpf)
     return false if cpf.nil?
     nulos = %w{12345678909 11111111111 22222222222 33333333333 44444444444 55555555555 66666666666 77777777777 88888888888 99999999999 00000000000 12345678909}
-    valor = cpf.scan /[0-9]/
+    valor = cpf.scan(/[0-9]/)
     if valor.length == 11
         unless nulos.member?(valor.join)
             valor = valor.collect{|x| x.to_i}
@@ -30,6 +30,12 @@ class Client < ApplicationRecord
     end
     self.cpf = nil
     return false
+  end
+
+  def validate_cpf
+    if !check_cpf
+      self.errors.add(:cpf, 'deve ser um cpf valido')
+    end
   end
 
 end
