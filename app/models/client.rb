@@ -5,6 +5,7 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, :cpf, presence: true
+  validates :cpf, uniqueness: true
   validate :validate_cpf
 
   private

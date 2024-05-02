@@ -11,7 +11,7 @@
         <li><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></li>
         <li><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></li>
         <li><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></li>
-        <li><%= Buffet.human_attribute_name(:payment_id) %>: <%= @buffet.payment.payment_type %></li>
+        <li><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></li>
         <li><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></li>
       </ul>
   </section>

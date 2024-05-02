@@ -55,8 +55,8 @@
   </div>
 
   <div>
-    <%= form.label :payment_id %>
-    <%= form.collection_select :payment_id, @payments, :id, :payment_type %>
+    <%= form.label :payment %>
+    <%= form.select :payment, options_for_select([['pix', 'pix'], ['pix + debito', 'pix + debito'], ['pix + credito', 'pix + credito']]) %>
   </div>
 
   <%= form.submit %>

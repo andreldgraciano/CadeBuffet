@@ -13,7 +13,6 @@ class BuffetsController < ApplicationController
 
   def new
     @buffet = Buffet.new
-    @payments = Payment.all
   end
 
   def create
@@ -24,14 +23,12 @@ class BuffetsController < ApplicationController
       flash[:notice] = 'Buffet cadastrado com sucesso!'
       redirect_to(home_buffet_profile_path)
     else
-      @payments = Payment.all
       flash.now[:notice] = 'Buffet não cadastrado.'
       return render('new')
     end
   end
 
   def edit
-    @payments = Payment.all
   end
 
   def update
@@ -39,7 +36,6 @@ class BuffetsController < ApplicationController
       flash[:notice] = 'Buffet atualizado com sucesso!'
       redirect_to(home_buffet_profile_path)
     else
-      @payments = Payment.all
       flash.now[:notice] = 'Buffet não pôde ser atualizado.'
       render('edit')
     end
@@ -60,7 +56,7 @@ class BuffetsController < ApplicationController
   end
 
   def buffet_params
-    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment_id)
+    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment)
   end
 
   def authorize_buffet_show
