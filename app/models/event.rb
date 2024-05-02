@@ -1,4 +1,3 @@
 class Event < ApplicationRecord
-  #conferir has_many
-  has_many :buffets
+  belongs_to :buffet
 end

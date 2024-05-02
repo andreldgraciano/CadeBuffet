@@ -4,8 +4,14 @@ class HomeController < ApplicationController
   def index
     if buffet_profile_signed_in?
       redirect_to home_buffet_profile_path
+    else
+      if params[:query]
+        query = params[:query]
+        @buffets = Buffet.joins(:events).where("brand_name LIKE ? OR city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
+      else
+        @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
+      end
     end
-    @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
   end
 
   def buffet_profile

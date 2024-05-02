@@ -12,7 +12,14 @@
   <body>
     <header id="header">
       <div class="header_logo">
-        <h1>CADE BUFFET?</h1>
+        <h1><%= link_to 'CADE BUFFET?', root_path %></h1>
+        <div>
+          <%= form_with(model: @event, method: :get, url: root_path) do |form| %>
+            <%= form.label :query, "Search for:" %>
+            <%= form.text_field :query %>
+            <%= form.submit "Search" %>
+          <% end %>
+        </div>
       </div>
 
       <nav class="header_nav" id="client_session">
