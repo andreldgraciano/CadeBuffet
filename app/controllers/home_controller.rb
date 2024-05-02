@@ -3,6 +3,9 @@ class HomeController < ApplicationController
 
   def index
     if buffet_profile_signed_in?
+      if params[:query]
+        flash[:notice] = 'Funcionalidade de pesquisa não autorizada para donos de buffet.'
+      end
       redirect_to home_buffet_profile_path
     else
       if params[:query]
