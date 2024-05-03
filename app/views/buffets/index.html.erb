@@ -1,1 +1,11 @@
-<h1>NÃO ERA PRA ENTRAR AQUI, O CLIENTE DEVE ENTRAR NA INDEX PADRAO</h1>
+<% if @buffets.any? %>
+  <% @buffets.each do |buffet|%>
+    <section>
+      <h2> <%= link_to buffet.brand_name, buffet_path(buffet) %> </h2>
+      <span><%= Buffet.human_attribute_name(:state) %>: <%= buffet.state %></span>
+      <span><%= Buffet.human_attribute_name(:city) %>: <%= buffet.city %></span>
+    </section>
+  <% end %>
+<% else %>
+  <p>Não existem buffets cadastrados.</p>
+<% end %>

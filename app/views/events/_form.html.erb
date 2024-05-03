@@ -11,27 +11,27 @@
 
   <div>
     <%= form.label :min_people %>
-    <%= form.number_field :min_people %>
+    <%= form.number_field :min_people, step: 10 %>
   </div>
 
   <div>
     <%= form.label :max_peaple %>
-    <%= form.number_field :max_peaple %>
+    <%= form.number_field :max_peaple, step: 10 %>
   </div>
 
   <div>
     <%= form.label :duration %>
-    <%= form.number_field :duration %>
+    <%= form.number_field :duration, step: 30 %>
   </div>
   
   <div>
     <%= form.label :base_price %>
-    <%= form.number_field :base_price %>
+    <%= form.number_field :base_price, step: 50 %>
   </div>
   
   <div>
     <%= form.label :additional_per_person %>
-    <%= form.number_field :additional_per_person %>
+    <%= form.number_field :additional_per_person, step: 5 %>
   </div>
   
   <div>
@@ -41,12 +41,12 @@
   
   <div>
     <%= form.label :base_price_weekend %>
-    <%= form.number_field :base_price_weekend %>
+    <%= form.number_field :base_price_weekend, step: 50 %>
   </div>
   
   <div>
     <%= form.label :additional_per_person_weekend %>
-    <%= form.number_field :additional_per_person_weekend %>
+    <%= form.number_field :additional_per_person_weekend, step: 5 %>
   </div>
   
   <div>

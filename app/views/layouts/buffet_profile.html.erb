@@ -16,9 +16,8 @@
       </div>
 
       <nav class="header_nav" id="buffet_profile_session">
-        <% if Buffet.find_by(buffet_profile_id: current_buffet_profile.id) %>
-          <p style="font-weight: bold;"> <%= Buffet.find_by(buffet_profile_id: current_buffet_profile.id).brand_name %> </p>
-        <% end %>
+        <%= link_to 'Pedidos', orders_path %>
+        <p style="font-weight: bold;"> <%= Buffet.find_by(buffet_profile_id: current_buffet_profile.id).brand_name %> </p>
         <%= button_to 'Sign out', destroy_buffet_profile_session_path, method: :delete %>
       </nav>
     </header>

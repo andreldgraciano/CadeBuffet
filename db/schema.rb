@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_02_135506) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_193102) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -80,6 +80,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_135506) do
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "buffet_id", null: false
+    t.integer "event_id", null: false
+    t.integer "client_id", null: false
+    t.date "event_day"
+    t.integer "amount_people"
+    t.text "details"
+    t.string "code"
+    t.string "venue"
+    t.string "status", default: "Aguardando avaliação do buffet"
+    t.date "order_vality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buffet_id"], name: "index_orders_on_buffet_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["event_id"], name: "index_orders_on_event_id"
+  end
+
   add_foreign_key "buffets", "buffet_profiles"
   add_foreign_key "events", "buffets"
+  add_foreign_key "orders", "buffets"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "orders", "events"
 end

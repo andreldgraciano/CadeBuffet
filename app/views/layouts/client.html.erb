@@ -12,9 +12,9 @@
   <body>
     <header id="header">
       <div class="header_logo">
-        <h1><%= link_to 'CADE BUFFET?', root_path %></h1>
+        <h1><%= link_to 'CADE BUFFET?', buffets_path %></h1>
         <div>
-          <%= form_with(model: @event, method: :get, url: root_path) do |form| %>
+          <%= form_with(model: @event, method: :get, url: buffets_path) do |form| %>
             <%= form.label :query, "Search for:" %>
             <%= form.text_field :query %>
             <%= form.submit "Search" %>
@@ -23,6 +23,7 @@
       </div>
 
       <nav class="header_nav" id="client_session">
+        <%= link_to 'Meus Pedidos', orders_path %>
         <p style="font-weight: bold;"><%= current_client.name %></p>
         <%= button_to 'Sign out', destroy_client_session_path, method: :delete %>
       </nav>

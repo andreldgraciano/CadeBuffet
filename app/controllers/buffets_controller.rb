@@ -7,6 +7,22 @@ class BuffetsController < ApplicationController
   before_action :authorize_buffet_new_create, only: [:new, :create]
   before_action :authorize_buffet_show, only: [:show]
 
+  def index
+    if buffet_profile_signed_in?
+      if params[:query]
+        flash[:notice] = 'Funcionalidade de pesquisa não autorizada para donos de buffet.'
+      end
+      redirect_to home_buffet_profile_path
+    else
+      if params[:query]
+        query = params[:query]
+        @buffets = Buffet.joins(:events).where("brand_name LIKE ? OR city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
+      else
+        @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
+      end
+    end
+  end
+
   def show
 
   end

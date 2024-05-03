@@ -1,0 +1,36 @@
+<h1>Registrar Pedido</h1>
+
+nome do buffet:
+<%= @buffet.brand_name %>
+<br>
+nome do evento:
+<%= @event.name %>
+<hr>
+<%= form_with(model: @order) do |form|%>
+  <%= form.hidden_field :buffet_id, value: @buffet.id %>
+  <%= form.hidden_field :event_id, value: @event.id %>
+
+  <div>
+    <%= form.label :event_day %> <br>
+    <%= form.date_field :event_day %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :amount_people %> <br>
+    <%= form.number_field :amount_people, step: 10 %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :details %> <br>
+    <%= form.text_area :details %> <br><br>
+  </div>
+
+  <% if @event.venue_preference != 'exclusivamente no endereço do buffet' %>
+    <div>
+      <%= form.label :venue, "Se o local do evento for diferente do disponibilizado pelo buffet (#{@event.address}), preencha o campo abaixo:" %> <br>
+      <%= form.text_field :venue  %> <br><br>
+    </div>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>
