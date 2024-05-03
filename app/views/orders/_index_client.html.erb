@@ -1,0 +1,12 @@
+<h1>CLIENT ESTA VENDO OS PEDIDOS</h1>
+
+<% if @orders.any? %>
+  <% @orders.each do |order|%>
+    <section>
+      <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
+      <p>dia do evento: <%= order.event_day %></p>
+    </section>
+  <% end %>
+<% else %>
+  <p>Não existem pedidos cadastrados.</p>
+<% end %>

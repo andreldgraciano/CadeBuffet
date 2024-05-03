@@ -1,5 +1,5 @@
 <% if buffet_profile_signed_in? %>
-  <%= render('index_buffet_profile') %>
+  <%= render('show_buffet_profile') %>
 <% elsif client_signed_in? %>
-  <%= render('index_client') %>
+  <%= render('show_client') %>
 <% end %>

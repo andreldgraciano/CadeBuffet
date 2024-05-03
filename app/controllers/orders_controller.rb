@@ -3,7 +3,15 @@ class OrdersController < ApplicationController
   before_action :set_buffet_and_event, only: [:new]
 
   def index
-    @orders = Order.where(client_id: current_client.id)
+    if client_signed_in?
+      @orders = Order.where(client_id: current_client.id)
+    elsif buffet_profile_signed_in?
+      @orders = Order.where(buffet_id: current_buffet_profile.buffet)
+    end
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -18,7 +26,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = 'Pedido cadastrado com sucesso!'
-      redirect_to(root_path)
+      redirect_to(order_path(@order))
     else
       flash.now[:notice] = 'Pedido não cadastrado.'
       return render('new')

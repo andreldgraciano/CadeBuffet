@@ -1,0 +1,42 @@
+<h1>CLIENT ESTA VENDO UM PEDIDO ESPECIFICO</h1>
+
+<% if @order.status == 'Aguardando avaliação do buffet' %>
+  <section>
+    <h1>Pedido <%= @order.code %></h1>
+    <p>nome do biffet: <%= @order.buffet.brand_name %></p>
+    <p>evento: <%= @order.event.name %></p>
+    <p>cliente: <%= @order.client.name %></p>
+    <p>dia do evento: <%= @order.event_day %></p>
+    <p>quantidade de pessoas: <%= @order.amount_people %></p>
+    <p>Detalhes do pedido: <%= @order.details %></p>
+    <p>Local do evento: <%= @order.venue %></p>
+    <p>Status do pedido: <%= @order.status %></p>
+    <p>Validade do pedido: <%= @order.order_vality %></p>
+  </section>
+<% elsif @order.status == 'Pedido confirmado' %>
+  <section>
+    <h1>Pedido <%= @order.code %></h1>
+    <p>nome do biffet: <%= @order.buffet.brand_name %></p>
+    <p>evento: <%= @order.event.name %></p>
+    <p>cliente: <%= @order.client.name %></p>
+    <p>dia do evento: <%= @order.event_day %></p>
+    <p>quantidade de pessoas: <%= @order.amount_people %></p>
+    <p>Detalhes do pedido: <%= @order.details %></p>
+    <p>Local do evento: <%= @order.venue %></p>
+    <p>Status do pedido: <%= @order.status %></p>
+    <p>Validade do pedido: <%= @order.order_vality %></p>
+  </section>
+<% elsif @order.status == 'Pedido cancelado' %>
+  <section>
+    <h1>Pedido <%= @order.code %></h1>
+    <p>nome do biffet: <%= @order.buffet.brand_name %></p>
+    <p>evento: <%= @order.event.name %></p>
+    <p>cliente: <%= @order.client.name %></p>
+    <p>dia do evento: <%= @order.event_day %></p>
+    <p>quantidade de pessoas: <%= @order.amount_people %></p>
+    <p>Detalhes do pedido: <%= @order.details %></p>
+    <p>Local do evento: <%= @order.venue %></p>
+    <p>Status do pedido: <%= @order.status %></p>
+    <p>Validade do pedido: <%= @order.order_vality %></p>
+  </section>
+<% end %>
