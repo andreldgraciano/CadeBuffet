@@ -22,7 +22,7 @@
       </h3>
     </div>
     
-    <div style="display: flex; gap: 1rem;">
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap">
       <% if @buffet.events.any? %>
         <% @buffet.events.each do |event|%>
         <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem;">

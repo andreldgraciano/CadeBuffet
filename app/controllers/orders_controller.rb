@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
       @orders = Order.where(client_id: current_client.id)
     elsif buffet_profile_signed_in?
       @orders = Order.where(buffet_id: current_buffet_profile.buffet)
+    else
+      redirect_to root_path
     end
   end
 
@@ -42,8 +44,13 @@ class OrdersController < ApplicationController
   end
 
   def set_buffet_and_event
-    @buffet = Buffet.find(params[:buffet_id])
-    @event = @buffet.events.find(params[:event_id])
+    if params[:order]
+      @buffet = Buffet.find(params[:order][:buffet_id])
+      @event = Event.find(params[:order][:event_id])
+    else
+      @buffet = Buffet.find(params[:buffet_id])
+      @event = Event.find(params[:event_id])
+    end
   end
 
   def order_params

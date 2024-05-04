@@ -14,6 +14,7 @@
     <p>Validade do pedido: <%= @order.order_vality %></p>
   </section>
   <h1>BOTAO DE ACEITAR</h1>
+  <%= link_to 'Voltar em Pedidos', orders_path %>
 <% elsif @order.status == 'Pedido confirmado' %>
   <section>
     <h1>Pedido <%= @order.code %></h1>
@@ -27,6 +28,7 @@
     <p>Status do pedido: <%= @order.status %></p>
     <p>Validade do pedido: <%= @order.order_vality %></p>
   </section>
+  <%= link_to 'Voltar em Pedidos', orders_path %>
 <% elsif @order.status == 'Pedido cancelado' %>
   <section>
     <h1>Pedido <%= @order.code %></h1>
@@ -40,4 +42,5 @@
     <p>Status do pedido: <%= @order.status %></p>
     <p>Validade do pedido: <%= @order.order_vality %></p>
   </section>
+  <%= link_to 'Voltar em Pedidos', orders_path %>
 <% end %>

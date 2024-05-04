@@ -1,20 +1,22 @@
 <h1>BUFFET PROFILE ESTA VENDO OS PEDIDOS</h1>
 
 <% if @orders.any? %>
-  <% @orders.each do |order|%>
-    <section>
-      <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
-      <p>nome do biffet: <%= order.buffet.brand_name %></p>
-      <p>evento: <%= order.event.name %></p>
-      <p>cliente: <%= order.client.name %></p>
-      <p>dia do evento: <%= order.event_day %></p>
-      <p>quantidade de pessoas: <%= order.amount_people %></p>
-      <p>Detalhes do pedido: <%= order.details %></p>
-      <p>Local do evento: <%= order.venue %></p>
-      <p>Status do pedido: <%= order.status %></p>
-      <p>Validade do pedido: <%= order.order_vality %></p>
-    </section>
-  <% end %>
+  <div style="display: flex; gap: 2rem; flex-wrap: wrap">
+    <% @orders.sort_by { |order| [order.status == 'Aguardando avaliação do buffet' ? 0 : (order.status == 'pedido confirmado' ? 1 : 2), order.created_at] }.each do |order|%>
+      <section>
+        <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
+        <p>nome do biffet: <%= order.buffet.brand_name %></p>
+        <p>evento: <%= order.event.name %></p>
+        <p>cliente: <%= order.client.name %></p>
+        <p>dia do evento: <%= order.event_day %></p>
+        <p>quantidade de pessoas: <%= order.amount_people %></p>
+        <p>Detalhes do pedido: <%= order.details %></p>
+        <p>Local do evento: <%= order.venue %></p>
+        <p>Status do pedido: <%= order.status %></p>
+        <p>Validade do pedido: <%= order.order_vality %></p>
+      </section>
+    <% end %>
+  </div>
 <% else %>
   <p>Não existem pedidos cadastrados.</p>
 <% end %>

@@ -5,6 +5,8 @@ class Order < ApplicationRecord
 
   before_validation :generate_code, :set_order_vality
 
+  validates :event_day, :amount_people, presence: true
+
   private
 
   def generate_code

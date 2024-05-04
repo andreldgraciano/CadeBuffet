@@ -1,14 +1,9 @@
 <h1>Registrar Pedido</h1>
 
-nome do buffet:
-<%= @buffet.brand_name %>
-<br>
-nome do evento:
-<%= @event.name %>
 <hr>
 <%= form_with(model: @order) do |form|%>
-  <%= form.hidden_field :buffet_id, value: @buffet.id %>
-  <%= form.hidden_field :event_id, value: @event.id %>
+  <%= form.hidden_field :buffet_id, value: params[:buffet_id] %>
+  <%= form.hidden_field :event_id, value: params[:event_id] %>
 
   <div>
     <%= form.label :event_day %> <br>

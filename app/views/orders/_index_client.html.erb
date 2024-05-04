@@ -1,12 +1,14 @@
 <h1>CLIENT ESTA VENDO OS PEDIDOS</h1>
 
 <% if @orders.any? %>
-  <% @orders.each do |order|%>
-    <section>
-      <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
-      <p>dia do evento: <%= order.event_day %></p>
-    </section>
-  <% end %>
+  <div style="display: flex; gap: 2rem; flex-wrap: wrap">
+    <% @orders.sort_by { |order| [order.status == 'Aguardando avaliação do buffet' ? 0 : (order.status == 'pedido confirmado' ? 1 : 2), order.created_at] }.each do |order|%>
+      <section>
+        <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
+        <p>dia do evento: <%= order.event_day %></p>
+      </section>
+    <% end %>
+  </div>
 <% else %>
   <p>Não existem pedidos cadastrados.</p>
 <% end %>
