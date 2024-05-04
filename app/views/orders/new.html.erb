@@ -25,6 +25,11 @@
       <%= form.label :venue, "Se o local do evento for diferente do disponibilizado pelo buffet (#{@event.address}), preencha o campo abaixo:" %> <br>
       <%= form.text_field :venue  %> <br><br>
     </div>
+  <% else %>
+    <div>
+      <%= form.label :venue, "Local do evento (endereço disponibilizado pelo buffet):" %> <br>
+      <%= form.text_field :venue, disabled: true, value: @event.address %> <br><br>
+    </div>
   <% end %>
 
   <%= form.submit %>

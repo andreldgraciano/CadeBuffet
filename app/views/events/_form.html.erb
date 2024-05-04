@@ -71,17 +71,17 @@
 
   <div>
     <%= form.label :alcoholic_drink %>
-    <%= form.text_field :alcoholic_drink %>
+    <%= form.select :alcoholic_drink, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
   </div>
 
   <div>
     <%= form.label :decoration %>
-    <%= form.text_field :decoration %>
+    <%= form.select :decoration, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
   </div>
 
   <div>
     <%= form.label :parking %>
-    <%= form.text_field :parking %>
+    <%= form.select :parking, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
   </div>
 
   <%= form.submit %>

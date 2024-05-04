@@ -2,8 +2,8 @@
   <% @buffets.each do |buffet|%>
     <section>
       <h2> <%= link_to buffet.brand_name, buffet_path(buffet) %> </h2>
-      <span><%= Buffet.human_attribute_name(:state) %>: <%= buffet.state %></span>
-      <span><%= Buffet.human_attribute_name(:city) %>: <%= buffet.city %></span>
+      <p><%= Buffet.human_attribute_name(:state) %>: <%= buffet.state %></p>
+      <p><%= Buffet.human_attribute_name(:city) %>: <%= buffet.city %></p>
     </section>
   <% end %>
 <% else %>
