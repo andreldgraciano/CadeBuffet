@@ -28,7 +28,7 @@
   <% else %>
     <div>
       <%= form.label :venue, "Local do evento (endereço disponibilizado pelo buffet):" %> <br>
-      <%= form.text_field :venue, disabled: true, value: @event.address %> <br><br>
+      <%= form.text_field :venue, readonly: true, value: @event.address %> <br><br>
     </div>
   <% end %>
 
