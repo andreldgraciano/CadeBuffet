@@ -1,4 +1,6 @@
-<h1>BUFFET PROFILE ESTA VENDO UM PEDIDO ESPECIFICO</h1>
+<% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order } %>
+  <h3 style="background-color: yellow;">MAIS DE UM PEDIDO PARA O MESMO DIA!</h3>
+<% end %>
 
 <% if @order.status == 'Aguardando avaliação do buffet' %>
   <section>
@@ -13,7 +15,21 @@
     <p>Status do pedido: <%= @order.status %></p>
     <p>Validade do pedido: <%= @order.order_vality %></p>
   </section>
-  <h1>BOTAO DE ACEITAR</h1>
+  <%= button_to 'Aceitar', confirm_order_path(@order), method: :post %> <br><br>
+  <%= link_to 'Voltar em Pedidos', orders_path %>
+<% elsif @order.status == 'Pedido aceito pelo buffet' %>
+  <section>
+    <h1>Pedido <%= @order.code %></h1>
+    <p>nome do biffet: <%= @order.buffet.brand_name %></p>
+    <p>evento: <%= @order.event.name %></p>
+    <p>cliente: <%= @order.client.name %></p>
+    <p>dia do evento: <%= @order.event_day %></p>
+    <p>quantidade de pessoas: <%= @order.amount_people %></p>
+    <p>Detalhes do pedido: <%= @order.details %></p>
+    <p>Local do evento: <%= @order.venue %></p>
+    <p>Status do pedido: <%= @order.status %></p>
+    <p>Validade do pedido: <%= @order.order_vality %></p>
+  </section>
   <%= link_to 'Voltar em Pedidos', orders_path %>
 <% elsif @order.status == 'Pedido confirmado' %>
   <section>

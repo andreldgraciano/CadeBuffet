@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
   resources :events, only: [:new, :create, :edit, :update, :destroy]
   resources :orders, only: [:index, :show, :new, :create]
+
+  post 'orders/:id/confirm', to: 'orders#confirm', as: :confirm_order
 end

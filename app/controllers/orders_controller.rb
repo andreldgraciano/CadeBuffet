@@ -14,6 +14,13 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    if client_signed_in?
+      @orders = Order.where(client_id: current_client.id)
+    elsif buffet_profile_signed_in?
+      @orders = Order.where(buffet_id: current_buffet_profile.buffet)
+    else
+      redirect_to root_path
+    end
   end
 
   def new
@@ -28,10 +35,21 @@ class OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = 'Pedido cadastrado com sucesso!'
-      redirect_to(order_path(@order))
+      redirect_to @order
     else
       flash.now[:notice] = 'Pedido não cadastrado.'
       return render('new')
+    end
+  end
+
+  def confirm
+    @order = Order.find(params[:id])
+    if buffet_profile_signed_in?
+      @order.update(status: 'Pedido aceito pelo buffet')
+      redirect_to @order, notice: 'Pedido aceito com sucesso.'
+    elsif client_signed_in?
+      @order.update(status: 'Pedido confirmado pelo cliente')
+      redirect_to @order, notice: 'Pedido confirmado com sucesso.'
     end
   end
 

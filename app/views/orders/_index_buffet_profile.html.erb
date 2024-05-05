@@ -1,8 +1,10 @@
-<h1>BUFFET PROFILE ESTA VENDO OS PEDIDOS</h1>
-
 <% if @orders.any? %>
   <div style="display: flex; gap: 2rem; flex-wrap: wrap">
-    <% @orders.sort_by { |order| [order.status == 'Aguardando avaliação do buffet' ? 0 : (order.status == 'pedido confirmado' ? 1 : 2), order.created_at] }.each do |order|%>
+    <% @orders.sort_by { |order| [
+        order.status == 'Aguardando avaliação do buffet' ? 0 :
+        (order.status == 'Pedido aceito pelo buffet' ? 1 :
+        (order.status == 'Pedido confirmado pelo cliente' ? 2 :
+        (order.status == 'Pedido cancelado' ? 3 : 4))), order.created_at] }.each do |order| %>
       <section>
         <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
         <p>nome do biffet: <%= order.buffet.brand_name %></p>
