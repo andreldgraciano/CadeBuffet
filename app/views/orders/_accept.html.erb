@@ -1,0 +1,30 @@
+<%= form_with(model: @order, url: accept_order_path(@order), method: :post) do |form| %>
+  <%= form.hidden_field :status, value: 'Pedido aceito pelo buffet' %>
+
+  <div>
+    <%= form.label :discount %> <br>
+    <%= form.number_field :discount %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :discount_description %> <br>
+    <%= form.text_area :discount_description %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :surcharge %> <br>
+    <%= form.number_field :surcharge %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :surcharge_description %> <br>
+    <%= form.text_area :surcharge_description %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :order_vality %> <br>
+    <%= form.date_field :order_vality %> <br><br>
+  </div>
+
+  <%= form.submit 'Aceitar' %>
+<% end %>

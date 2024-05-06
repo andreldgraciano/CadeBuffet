@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :new, :create]
 
   post 'orders/:id/confirm', to: 'orders#confirm', as: :confirm_order
+  post 'orders/:id/accept', to: 'orders#accept', as: :accept_order
 end

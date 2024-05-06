@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_193102) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_140457) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,6 +93,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_193102) do
     t.date "order_vality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "discount", default: 0
+    t.integer "surcharge", default: 0
+    t.integer "total_value", default: 0
+    t.text "discount_description"
+    t.text "surcharge_description"
     t.index ["buffet_id"], name: "index_orders_on_buffet_id"
     t.index ["client_id"], name: "index_orders_on_client_id"
     t.index ["event_id"], name: "index_orders_on_event_id"
