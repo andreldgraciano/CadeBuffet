@@ -17,7 +17,7 @@ pt-BR:
         venue_preference: Local
         base_price: Preço base
         additional_per_person: Adicional por pessoa
-        extra_hour: Valor hora extra
+        value_extra_hour: Valor hora extra
         base_price_weekend: Preço base (Final de semana)
         additional_per_person_weekend: Adicional por pessoa (Final de semana)
-        extra_hour_weekend: Valor hora extra (Final de semana)
+        value_extra_hour_weekend: Valor hora extra (Final de semana)

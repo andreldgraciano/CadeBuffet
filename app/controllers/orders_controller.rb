@@ -1,30 +1,20 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :accept, :confirm, :cancel]
   before_action :authorize_client, only: [:new, :create]
-  before_action :set_buffet_and_event, only: [:new]
 
   def index
-    if client_signed_in?
-      @orders = Order.where(client_id: current_client.id)
-    elsif buffet_profile_signed_in?
-      @orders = Order.where(buffet_id: current_buffet_profile.buffet)
-    else
-      redirect_to root_path
-    end
+    set_orders()
   end
 
   def show
-    if client_signed_in?
-      @orders = Order.where(client_id: current_client.id)
-    elsif buffet_profile_signed_in?
-      @orders = Order.where(buffet_id: current_buffet_profile.buffet)
-    else
-      redirect_to root_path
-    end
+    set_orders()
   end
 
   def new
     @order = Order.new
+    set_buffet_and_event()
+    @order.venue = @event.address
+    @order.event_day = Date.today
   end
 
   def create
@@ -32,15 +22,22 @@ class OrdersController < ApplicationController
     @order.buffet = Buffet.find(params[:order][:buffet_id])
     @order.event = Event.find(params[:order][:event_id])
     @order.client = current_client
-    # @order.total_value = @order.event.base_price
-    @order.total_value = @order.event.base_price + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
+
+    # Atualize o total do pedido com base nos dados do evento
+    if @order.amount_people
+      @order.total_value = @order.event.base_price + (@order.extra_hour * @order.event.value_extra_hour) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
+    end
 
     if @order.save
       redirect_to @order, notice: 'Pedido cadastrado com sucesso!'
     else
-      return render('new'), notice: 'Pedido não cadastrado.'
+      # Repopular os dados do buffet e do evento
+      set_buffet_and_event()
+      flash.now[:notice] = 'Pedido não cadastrado'
+      render 'new'
     end
   end
+
 
   def accept
     # @order.total_value = @order.event.base_price + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
@@ -84,8 +81,18 @@ class OrdersController < ApplicationController
     end
   end
 
+  def set_orders
+    if client_signed_in?
+      @orders = Order.where(client_id: current_client.id)
+    elsif buffet_profile_signed_in?
+      @orders = Order.where(buffet_id: current_buffet_profile.buffet)
+    else
+      redirect_to root_path
+    end
+  end
+
   def order_params
-    params.require(:order).permit(:event_day, :amount_people, :details, :venue, :total_value)
+    params.require(:order).permit(:event_day, :amount_people, :details, :venue, :total_value, :extra_hour)
   end
 
   def order_params_accept

@@ -5,11 +5,11 @@
         (order.status == 'Pedido aceito pelo buffet' ? 1 :
         (order.status == 'Pedido confirmado pelo cliente' ? 2 :
         (order.status == 'Pedido cancelado' ? 3 : 4))), order.created_at] }.each do |order| %>
-      <section>
-        <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
-        <p>evento: <%= order.event.name %></p>
-        <p>Status do pedido: <%= order.status %></p>
-      </section>
+          <section>
+            <h1><%= link_to "Pedido #{order.code}", order_path(order) %></h1>
+            <p>evento: <%= order.event.name %></p>
+            <p>Status do pedido: <%= order.status %></p>
+          </section>
     <% end %>
   </div>
 <% else %>

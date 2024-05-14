@@ -35,8 +35,8 @@
   </div>
   
   <div>
-    <%= form.label :extra_hour %>
-    <%= form.number_field :extra_hour %>
+    <%= form.label :value_extra_hour %>
+    <%= form.number_field :value_extra_hour %>
   </div>
   
   <div>
@@ -50,8 +50,8 @@
   </div>
   
   <div>
-    <%= form.label :extra_hour_weekend %>
-    <%= form.number_field :extra_hour_weekend %>
+    <%= form.label :value_extra_hour_weekend %>
+    <%= form.number_field :value_extra_hour_weekend %>
   </div>
 
   <div>
@@ -68,10 +68,12 @@
     <%= form.label :decoration %>
     <%= form.select :decoration, Event.decorations.keys.map { |key| [key.humanize, key] } %>
   </div>
+
   <div>
     <%= form.label :alcoholic_drink %>
     <%= form.select :alcoholic_drink, Event.alcoholic_drinks.keys.map { |key| [key.humanize, key] } %>
   </div>
+  
   <div>
     <%= form.label :venue_preference %>
     <%= form.select :venue_preference, Event.venue_preferences.keys.map { |key| [key.humanize, key] } %>

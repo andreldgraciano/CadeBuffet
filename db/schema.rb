@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_13_221712) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_035126) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,12 +73,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_221712) do
     t.datetime "updated_at", null: false
     t.integer "buffet_id", null: false
     t.integer "venue_preference", default: 0
-    t.integer "base_price"
-    t.integer "additional_per_person"
-    t.integer "extra_hour"
-    t.integer "base_price_weekend"
-    t.integer "additional_per_person_weekend"
-    t.integer "extra_hour_weekend"
+    t.integer "base_price", default: 0
+    t.integer "additional_per_person", default: 0
+    t.integer "value_extra_hour", default: 0
+    t.integer "base_price_weekend", default: 0
+    t.integer "additional_per_person_weekend", default: 0
+    t.integer "value_extra_hour_weekend", default: 0
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 
@@ -100,6 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_221712) do
     t.integer "total_value", default: 0
     t.text "discount_description"
     t.text "surcharge_description"
+    t.integer "extra_hour", default: 0
     t.index ["buffet_id"], name: "index_orders_on_buffet_id"
     t.index ["client_id"], name: "index_orders_on_client_id"
     t.index ["event_id"], name: "index_orders_on_event_id"

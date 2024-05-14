@@ -50,7 +50,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :base_price, :additional_per_person, :extra_hour, :base_price_weekend, :additional_per_person_weekend, :extra_hour_weekend, :menu, :address, :venue_preference, :alcoholic_drink, :decoration, :parking)
+    params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :base_price, :additional_per_person, :value_extra_hour, :base_price_weekend, :additional_per_person_weekend, :value_extra_hour_weekend, :menu, :address, :venue_preference, :alcoholic_drink, :decoration, :parking)
   end
 
   def authorize_buffet_profile_edit_update_destroy_own_event

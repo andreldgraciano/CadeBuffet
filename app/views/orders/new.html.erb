@@ -1,9 +1,23 @@
 <h1>Registrar Pedido</h1>
 
+<% if @order.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+  <% @order.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <hr>
 <%= form_with(model: @order) do |form|%>
-  <%= form.hidden_field :buffet_id, value: params[:buffet_id] %>
-  <%= form.hidden_field :event_id, value: params[:event_id] %>
+  <% if params[:order].present? %>
+    <%= form.hidden_field :buffet_id, value: params[:order][:buffet_id] %>
+    <%= form.hidden_field :event_id, value: params[:order][:event_id] %>
+  <% else %>
+    <%= form.hidden_field :buffet_id, value: params[:buffet_id] %>
+    <%= form.hidden_field :event_id, value: params[:event_id] %>
+  <% end %>
 
   <div>
     <%= form.label :event_day %> <br>
@@ -13,6 +27,11 @@
   <div>
     <%= form.label :amount_people %> <br>
     <%= form.number_field :amount_people, step: 10 %> <br><br>
+  </div>
+
+  <div>
+    <%= form.label :extra_hour %> <br>
+    <%= form.number_field :extra_hour %> <br><br>
   </div>
 
   <div>
