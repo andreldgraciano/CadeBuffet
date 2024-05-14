@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :accept, :confirm]
+  before_action :set_order, only: [:show, :accept, :confirm, :cancel]
   before_action :authorize_client, only: [:new, :create]
   before_action :set_buffet_and_event, only: [:new]
 
@@ -55,6 +55,11 @@ class OrdersController < ApplicationController
   def confirm
     @order.update(status: 'Pedido confirmado pelo cliente')
     redirect_to @order, notice: 'Pedido confirmado com sucesso.'
+  end
+
+  def cancel
+    @order.update(status: 'Pedido cancelado')
+    redirect_to @order, notice: 'Pedido cancelado com sucesso.'
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_140457) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_221712) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -38,7 +38,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_140457) do
     t.integer "buffet_profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "payment"
+    t.integer "payment_pix", default: 0
+    t.integer "payment_credito", default: 0
+    t.integer "payment_debito", default: 0
     t.index ["buffet_profile_id"], name: "index_buffets_on_buffet_profile_id"
   end
 
@@ -60,17 +62,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_140457) do
     t.string "name"
     t.text "description"
     t.integer "min_people"
-    t.integer "max_peaple"
+    t.integer "max_people"
     t.integer "duration"
     t.text "menu"
     t.string "address"
-    t.string "alcoholic_drink"
-    t.string "decoration"
-    t.string "parking"
+    t.integer "alcoholic_drink", default: 0
+    t.integer "decoration", default: 0
+    t.integer "parking", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "buffet_id", null: false
-    t.string "venue_preference", default: "exclusivamente no endereço do buffet"
+    t.integer "venue_preference", default: 0
     t.integer "base_price"
     t.integer "additional_per_person"
     t.integer "extra_hour"

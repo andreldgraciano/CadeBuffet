@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   get 'home/buffet_profile'
-  # get 'home/client'
-  #implementar funcionalidades de cliente na home dele.
 
   resources :buffets, only: [:index, :show, :new, :create, :edit, :update]
   resources :events, only: [:new, :create, :edit, :update, :destroy]
@@ -20,4 +18,5 @@ Rails.application.routes.draw do
 
   post 'orders/:id/confirm', to: 'orders#confirm', as: :confirm_order
   post 'orders/:id/accept', to: 'orders#accept', as: :accept_order
+  post 'orders/:id/cancel', to: 'orders#cancel', as: :cancel_order
 end

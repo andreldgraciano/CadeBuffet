@@ -1,13 +1,19 @@
-<% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order } %>
-  <h3 style="background-color: yellow;">MAIS DE UM PEDIDO PARA O MESMO DIA!</h3>
+<% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order && order.status != 'Pedido cancelado' && @order.status != 'Pedido cancelado'} %>
+  <h3 style="background-color: yellow;">MAIS DE UM PEDIDO ATIVO PARA O MESMO DIA!</h3>
 <% end %>
 
 <% if @order.status == 'Aguardando avaliação do buffet' %>
+
   <%= render('details_order_buffet_profile') %>
+  <h2>TOTAL: R$ <%= @order.total_value %></h2>
+
   <%= render('accept') %>
-  <h2>TOTAL: R$ <%= @order.total_value %></h2>
+  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
+
 <% elsif @order.status == 'Pedido aceito pelo buffet' %>
+
   <%= render('details_order_buffet_profile') %>
+
   <p>Validade do pedido: <%= @order.order_vality %></p>
   <h3>Preço Original: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
   <h3>Desconto: <%= @order.discount %></h3>
@@ -15,7 +21,11 @@
   <h3>Taxa Extra: <%= @order.surcharge %></h3>
   <p><%= @order.surcharge_description %></p>
   <h2>TOTAL: R$ <%= @order.total_value %></h2>
+
+  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
+
 <% elsif @order.status == 'Pedido confirmado pelo cliente' %>
+
   <%= render('details_order_buffet_profile') %>
   <p>Validade do pedido: <%= @order.order_vality %></p>
   <h3>Preço Original: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
@@ -24,6 +34,9 @@
   <h3>Taxa Extra: <%= @order.surcharge %></h3>
   <p><%= @order.surcharge_description %></p>
   <h2>TOTAL: R$ <%= @order.total_value %></h2>
+
+  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
+
 <% elsif @order.status == 'Pedido cancelado' %>
   <%= render('details_order_buffet_profile') %>
 <% end %>

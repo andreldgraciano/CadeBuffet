@@ -15,8 +15,8 @@
   </div>
 
   <div>
-    <%= form.label :max_peaple %>
-    <%= form.number_field :max_peaple, step: 10 %>
+    <%= form.label :max_people %>
+    <%= form.number_field :max_people, step: 10 %>
   </div>
 
   <div>
@@ -65,23 +65,21 @@
   </div>
 
   <div>
-    <%= form.label :venue_preference %>
-    <%= form.select :venue_preference, options_for_select([['exclusivamente no endereço do buffet', 'exclusivamente no endereço do buffet'], ['pode ser feito em um endereço indicado pelo contratante', 'pode ser feito em um endereço indicado pelo contratante']]) %>
+    <%= form.label :decoration %>
+    <%= form.select :decoration, Event.decorations.keys.map { |key| [key.humanize, key] } %>
   </div>
-
   <div>
     <%= form.label :alcoholic_drink %>
-    <%= form.select :alcoholic_drink, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
+    <%= form.select :alcoholic_drink, Event.alcoholic_drinks.keys.map { |key| [key.humanize, key] } %>
   </div>
-
   <div>
-    <%= form.label :decoration %>
-    <%= form.select :decoration, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
+    <%= form.label :venue_preference %>
+    <%= form.select :venue_preference, Event.venue_preferences.keys.map { |key| [key.humanize, key] } %>
   </div>
 
   <div>
     <%= form.label :parking %>
-    <%= form.select :parking, options_for_select([['Sim', 'Sim'], ['Não', 'Não']]) %>
+    <%= form.select :parking, Event.parkings.keys.map { |key| [key.humanize, key] } %>
   </div>
 
   <%= form.submit %>

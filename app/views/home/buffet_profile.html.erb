@@ -11,7 +11,9 @@
     <p><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></p>
     <p><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></p>
     <p><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></p>
-    <p><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></p>
+    <p><%= Buffet.human_attribute_name(:payment_pix) %>: <%= @buffet.payment_pix %></p>
+    <p><%= Buffet.human_attribute_name(:payment_credito) %>: <%= @buffet.payment_credito %></p>
+    <p><%= Buffet.human_attribute_name(:payment_debito) %>: <%= @buffet.payment_debito %></p>
     <p><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></p>
     <%= link_to 'Editar buffet', edit_buffet_path(@buffet) %>
   </section>
@@ -30,7 +32,7 @@
           <ul>
             <li><%= Event.human_attribute_name(:description) %>: <%= event.description %></li>
             <li><%= Event.human_attribute_name(:min_people) %>: <%= event.min_people %></li>
-            <li><%= Event.human_attribute_name(:max_peaple) %>: <%= event.max_peaple %></li>
+            <li><%= Event.human_attribute_name(:max_people) %>: <%= event.max_people %></li>
             <li><%= Event.human_attribute_name(:duration) %>: <%= event.duration %></li>
             <li><%= Event.human_attribute_name(:base_price) %>: <%= event.base_price %></li>
             <li><%= Event.human_attribute_name(:additional_per_person) %>: <%= event.additional_per_person %></li>

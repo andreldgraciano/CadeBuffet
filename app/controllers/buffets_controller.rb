@@ -72,7 +72,7 @@ class BuffetsController < ApplicationController
   end
 
   def buffet_params
-    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment)
+    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment_pix, :payment_credito, :payment_debito)
   end
 
   def authorize_buffet_show

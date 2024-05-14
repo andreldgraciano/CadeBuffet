@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    models:
+      event: Evento
+    attributes:
+      event:
+        name: Nome
+        description: Descrição
+        min_people: Quantidade mínima de pessoas
+        max_people: Quantidade máxima de pessoas
+        duration: Duração do evento
+        menu: Cardápio
+        address: Endereço
+        alcoholic_drink: Bebida alcoolica
+        decoration: Decoração
+        parking: Serviço de Estacionamento
+        venue_preference: Local
+        base_price: Preço base
+        additional_per_person: Adicional por pessoa
+        extra_hour: Valor hora extra
+        base_price_weekend: Preço base (Final de semana)
+        additional_per_person_weekend: Adicional por pessoa (Final de semana)
+        extra_hour_weekend: Valor hora extra (Final de semana)
