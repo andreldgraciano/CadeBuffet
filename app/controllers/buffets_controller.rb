@@ -32,8 +32,14 @@ class BuffetsController < ApplicationController
   end
 
   def create
+    if Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
+      return redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu buffet!'
+    end
+
     @buffet = Buffet.new(buffet_params)
     @buffet.buffet_profile = current_buffet_profile
+
+
 
     if @buffet.save
       flash[:notice] = 'Buffet cadastrado com sucesso!'
@@ -72,7 +78,7 @@ class BuffetsController < ApplicationController
   end
 
   def buffet_params
-    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment_pix, :payment_credito, :payment_debito)
+    params.require(:buffet).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :district, :state, :city, :zip_code, :description, :payment)
   end
 
   def authorize_buffet_show

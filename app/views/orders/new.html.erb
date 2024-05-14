@@ -18,6 +18,7 @@
     <%= form.hidden_field :buffet_id, value: params[:buffet_id] %>
     <%= form.hidden_field :event_id, value: params[:event_id] %>
   <% end %>
+    <%= form.hidden_field :payment, value: @buffet.payment %>
 
   <div>
     <%= form.label :event_day %> <br>

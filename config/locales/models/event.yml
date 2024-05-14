@@ -1,6 +1,10 @@
 pt-BR:
   activerecord:
     models:
+      buffet: Buffet
+    attributes:
+      buffet:
+        payment: Forma de Pagamento
       event: Evento
     attributes:
       event:

@@ -54,14 +54,10 @@
     <%= form.text_area :description %>
   </div>
 
-  <%= form.label :payment_pix, "Pix" %>
-  <%= form.check_box :payment_pix %>
-
-  <%= form.label :payment_credito, "Crédito" %>
-  <%= form.check_box :payment_credito %>
-
-  <%= form.label :payment_debito, "Débito" %>
-  <%= form.check_box :payment_debito %>
+  <div>
+    <%= form.label :payment %>
+    <%= form.select :payment, Buffet.payments.keys.map { |key| [key.humanize, key] } %>
+  </div>
 
   <%= form.submit %>
 <% end %>

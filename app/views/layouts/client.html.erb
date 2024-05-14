@@ -13,7 +13,7 @@
     <header id="header">
       <div class="header_logo">
         <h1><%= link_to 'CADE BUFFET?', buffets_path %></h1>
-        <%= render 'shared/avisos' %>
+        
         <div>
           <%= form_with(model: @event, method: :get, url: buffets_path) do |form| %>
             <%= form.label :query, "Search for:" %>

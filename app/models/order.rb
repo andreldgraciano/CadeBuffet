@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :event
   belongs_to :client
 
+  enum payment: { Cash: 0, Cash_and_Card: 1 }
+
   before_validation :generate_code
 
   validates :event_day, :amount_people, presence: true

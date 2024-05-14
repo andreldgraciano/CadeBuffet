@@ -92,7 +92,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:event_day, :amount_people, :details, :venue, :total_value, :extra_hour)
+    params.require(:order).permit(:event_day, :amount_people, :details, :venue, :total_value, :extra_hour, :payment)
   end
 
   def order_params_accept
