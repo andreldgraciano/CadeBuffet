@@ -19,4 +19,12 @@ Rails.application.routes.draw do
   post 'orders/:id/confirm', to: 'orders#confirm', as: :confirm_order
   post 'orders/:id/accept', to: 'orders#accept', as: :accept_order
   post 'orders/:id/cancel', to: 'orders#cancel', as: :cancel_order
+
+  namespace :api do
+    namespace :v1 do
+      resources :buffets, only: [:index, :show]
+      resources :search_buffet, only: [:show]
+      resources :events_buffet, only: [:show]
+    end
+  end
 end
