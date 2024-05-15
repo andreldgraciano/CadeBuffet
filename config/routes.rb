@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :buffets, only: [:index, :show]
       resources :search_buffet, only: [:show]
       resources :events_buffet, only: [:show]
+      resources :events, only: [:show]
     end
   end
 end

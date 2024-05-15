@@ -1,6 +1,7 @@
 class Buffet < ApplicationRecord
   belongs_to :buffet_profile
   has_many :events, -> { order(base_price: :asc) }, dependent: :destroy
+  has_many :orders
 
   enum payment: { Cash: 0, Cash_and_Card: 1 }
 
