@@ -6,12 +6,15 @@ class OrdersController < ApplicationController
 
   before_action :authorization_access_order!, only: [:show, :accept, :confirm, :cancel]
 
+
+
   def index
     set_orders()
   end
 
   def show
     set_orders()
+
   end
 
   def new
@@ -29,11 +32,25 @@ class OrdersController < ApplicationController
 
     # Atualize o total do pedido com base nos dados do evento
     if @order.amount_people
-      @order.total_value = @order.event.base_price + (@order.extra_hour * @order.event.value_extra_hour) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
+      # puts '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/'
+      # puts "@order.event.base_price: #{@order.event.base_price}"
+      # puts "@order.event.value_extra_hour: #{@order.event.value_extra_hour}"
+      # puts "@order.event.additional_per_person: #{@order.event.additional_per_person}"
+      # puts "@order.event.base_price_weekend: #{@order.event.base_price_weekend}"
+      # puts "@order.event.value_extra_hour_weekend: #{@order.event.value_extra_hour_weekend}"
+      # puts "@order.event.additional_per_person_weekend: #{@order.event.additional_per_person_weekend}"
+      # puts '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/'
+      if @order.event_day.on_weekend?
+        # puts "@order.total_value (FINAL DE SEMANA): #{@order.total_value}"
+        @order.total_value = @order.event.base_price_weekend + (@order.extra_hour * @order.event.value_extra_hour_weekend) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person_weekend
+      else
+        @order.total_value = @order.event.base_price + (@order.extra_hour * @order.event.value_extra_hour) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
+        # puts "@order.total_value (DIA DE SEMANA): #{@order.total_value (DIA DE SEMANA)}"
+      end
     end
 
     if @order.save
-      redirect_to @order, notice: 'Pedido cadastrado com sucesso!'
+      redirect_to @order, notice: 'Pedido cadastrado com sucesso'
     else
       set_buffet_and_event()
       flash.now[:notice] = 'Pedido não cadastrado'
@@ -41,33 +58,31 @@ class OrdersController < ApplicationController
     end
   end
 
+  # check_order_vality
   def accept
-    if @order.update(order_params_accept)
-      calc_value_order_accepted
-      redirect_to @order, notice: 'Pedido aceito com sucesso.'
-    else
-      redirect_to @order
-    end
+    @order.update(order_params_accept)
+    calc_value_order_accepted
+    redirect_to @order, notice: 'Pedido aceito com sucesso'
   end
 
   def confirm
     @order.update(status: 'Pedido confirmado pelo cliente')
-    redirect_to @order, notice: 'Pedido confirmado com sucesso.'
+    redirect_to @order, notice: 'Pedido confirmado com sucesso'
   end
 
   def cancel
     @order.update(status: 'Pedido cancelado')
-    redirect_to @order, notice: 'Pedido cancelado com sucesso.'
+    redirect_to @order, notice: 'Pedido cancelado com sucesso'
   end
 
   private
 
   def authenticate_client!
-    redirect_to root_path, notice: "Você precisa estar autenticado como client para criar um pedido" unless client_signed_in?
+    redirect_to root_path, notice: 'Você precisa estar autenticado como client para criar um pedido' unless client_signed_in?
   end
 
   def authenticate_buffet_profile_or_client!
-    redirect_to root_path, notice: "Você precisa estar autenticado como client ou buffet_profile para acessar um pedido" unless buffet_profile_signed_in? || client_signed_in?
+    redirect_to root_path, notice: 'Você precisa estar autenticado como client ou buffet_profile para acessar um pedido' unless buffet_profile_signed_in? || client_signed_in?
   end
 
   def set_order
@@ -117,4 +132,11 @@ class OrdersController < ApplicationController
     end
   end
 
+
+
+  def check_order_vality
+    if @order.order_vality < Date.today
+      redirect_to cancel_order_path(@order)
+    end
+  end
 end

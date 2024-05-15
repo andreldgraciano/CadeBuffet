@@ -10,6 +10,7 @@ class Order < ApplicationRecord
   validates :event_day, :amount_people, presence: true
 
   validate :validate_event_day
+  # validate :validate_order_vality_before_update
 
   private
 
@@ -22,4 +23,10 @@ class Order < ApplicationRecord
       errors.add(:event_day, 'deve ser uma data futura')
     end
   end
+
+  # def validate_order_vality_before_update
+  #   if order_vality.present? && order_vality <= Date.today
+  #     errors.add(:order_vality, 'deve ser uma data futura')
+  #   end
+  # end
 end

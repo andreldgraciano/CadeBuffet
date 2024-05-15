@@ -22,12 +22,12 @@
 
   <div>
     <%= form.label :event_day %> <br>
-    <%= form.date_field :event_day %> <br><br>
+    <%= form.date_field :event_day, min: Date.tomorrow %> <br><br>
   </div>
 
   <div>
     <%= form.label :amount_people %> <br>
-    <%= form.number_field :amount_people, step: 10 %> <br><br>
+    <%= form.number_field :amount_people, in: @event.min_people..@event.max_people %> <br><br>
   </div>
 
   <div>

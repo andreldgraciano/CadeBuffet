@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :order_vality %> <br>
-    <%= form.date_field :order_vality %> <br><br>
+    <%= form.date_field :order_vality, min: Date.tomorrow %> <br><br>
   </div>
 
   <%= form.submit 'Aceitar' %>
