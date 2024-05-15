@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
     if !@buffet
-      flash[:notice] = 'Cadastre seu buffet!'
+      flash[:notice] = 'Cadastre seu buffet'
       redirect_to new_buffet_path
     end
   end

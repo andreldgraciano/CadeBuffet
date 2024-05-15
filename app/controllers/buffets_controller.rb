@@ -1,4 +1,6 @@
 class BuffetsController < ApplicationController
+  before_action :authenticate_buffet_profile!, only: [:new, :create, :edit, :update]
+
   before_action :set_buffet, only: [:show, :edit, :update]
   before_action :set_buffet_profile, only: [:edit, :update]
   before_action :set_buffet_profile_buffet_event, only: [:edit, :update]
@@ -7,11 +9,14 @@ class BuffetsController < ApplicationController
   before_action :authorize_buffet_new_create, only: [:new, :create]
   before_action :authorize_buffet_show, only: [:show]
 
+
+
   def index
     if buffet_profile_signed_in?
       if params[:query]
-        flash[:notice] = 'Funcionalidade de pesquisa não autorizada para donos de buffet.'
+        flash[:notice] = 'Funcionalidade de pesquisa não autorizada para donos de buffet'
       end
+      flash[:notice] = 'Você só pode acessar o seu buffet'
       redirect_to home_buffet_profile_path
     else
       if params[:query]
@@ -33,7 +38,7 @@ class BuffetsController < ApplicationController
 
   def create
     if Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
-      return redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu buffet!'
+      return redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu buffet'
     end
 
     @buffet = Buffet.new(buffet_params)
@@ -42,10 +47,10 @@ class BuffetsController < ApplicationController
 
 
     if @buffet.save
-      flash[:notice] = 'Buffet cadastrado com sucesso!'
+      flash[:notice] = 'Buffet cadastrado com sucesso'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Buffet não cadastrado.'
+      flash.now[:notice] = 'Buffet não cadastrado'
       return render('new')
     end
   end
@@ -55,10 +60,10 @@ class BuffetsController < ApplicationController
 
   def update
     if @buffet.update(buffet_params)
-      flash[:notice] = 'Buffet atualizado com sucesso!'
+      flash[:notice] = 'Buffet atualizado com sucesso'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Buffet não pôde ser atualizado.'
+      flash.now[:notice] = 'Buffet não pôde ser atualizado'
       render('edit')
     end
   end
@@ -82,14 +87,14 @@ class BuffetsController < ApplicationController
   end
 
   def authorize_buffet_show
-    redirect_to home_buffet_profile_path, alert: 'Você só pode acessar o seu buffet!' unless !current_buffet_profile
+    redirect_to home_buffet_profile_path, alert: 'Você só pode acessar o seu buffet' unless !current_buffet_profile
   end
 
   def authorize_buffet_new_create
-    redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu biffet!' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
+    redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu biffet' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
   end
 
   def authorize_buffet_edit_update
-    redirect_to home_buffet_profile_path, alert: 'Você não tem acesso a esse biffet!' unless @buffet_profile == current_buffet_profile
+    redirect_to home_buffet_profile_path, alert: 'Você não tem acesso para modificar este biffet' unless @buffet_profile == current_buffet_profile
   end
 end

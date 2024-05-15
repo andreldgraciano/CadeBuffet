@@ -1,6 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_buffet_profile_or_client!, only: [:index, :show, :accept, :confirm, :cancel]
+  before_action :authenticate_client!, only: [:new, :create]
+
   before_action :set_order, only: [:show, :accept, :confirm, :cancel]
-  before_action :authorize_client, only: [:new, :create]
+
+  before_action :authorization_access_order!, only: [:show, :accept, :confirm, :cancel]
 
   def index
     set_orders()
@@ -31,18 +35,15 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order, notice: 'Pedido cadastrado com sucesso!'
     else
-      # Repopular os dados do buffet e do evento
       set_buffet_and_event()
       flash.now[:notice] = 'Pedido não cadastrado'
       render 'new'
     end
   end
 
-
   def accept
-    # @order.total_value = @order.event.base_price + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
     if @order.update(order_params_accept)
-      calcula_valor_pedido_aceito
+      calc_value_order_accepted
       redirect_to @order, notice: 'Pedido aceito com sucesso.'
     else
       redirect_to @order
@@ -61,14 +62,16 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id])
+  def authenticate_client!
+    redirect_to root_path, notice: "Você precisa estar autenticado como client para criar um pedido" unless client_signed_in?
   end
 
-  def authorize_client
-    unless client_signed_in?
-      redirect_to new_client_session_path, alert: "Faça o cadastro ou login para realizar pedidos."
-    end
+  def authenticate_buffet_profile_or_client!
+    redirect_to root_path, notice: "Você precisa estar autenticado como client ou buffet_profile para acessar um pedido" unless buffet_profile_signed_in? || client_signed_in?
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
   end
 
   def set_buffet_and_event
@@ -99,9 +102,19 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:discount, :discount_description, :surcharge, :surcharge_description,  :order_vality, :status, :total_value)
   end
 
-  def calcula_valor_pedido_aceito
+  def calc_value_order_accepted
     @order.total_value = @order.total_value + @order.surcharge - @order.discount
     @order.save
+  end
+
+  def authorization_access_order!
+    if buffet_profile_signed_in? && current_buffet_profile.buffet.id != @order.buffet.id
+      flash[:notice] = 'Você não tem permissão para acessar pedidos de outros biffets'
+      redirect_to home_buffet_profile_path
+    elsif client_signed_in? && current_client.id != @order.client.id
+      flash[:notice] = 'Você não tem permissão para acessar pedidos de outros clientes'
+      redirect_to root_path
+    end
   end
 
 end

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_buffet_profile!, only: [:new, :create, :edit, :update, :destroy]
+
   before_action :set_buffet, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_event, only: [:edit, :update, :destroy]
 
@@ -42,7 +44,9 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = current_buffet_profile.buffet.events.find(params[:id])
+    if @event = current_buffet_profile.buffet.events.find_by(id: params[:id])
+      return @event = current_buffet_profile.buffet.events.find_by(id: params[:id])
+    end
   end
 
   def set_buffet
@@ -54,8 +58,8 @@ class EventsController < ApplicationController
   end
 
   def authorize_buffet_profile_edit_update_destroy_own_event
-    unless @event.buffet_id == @buffet.id
-      flash[:alert] = "Você não tem permissão para excluir este evento."
+    unless current_buffet_profile.buffet.events.include?(@event)
+      flash[:alert] = "Você não tem permissão para manipular evento de outros buffets."
       redirect_to home_buffet_profile_path
     end
   end
