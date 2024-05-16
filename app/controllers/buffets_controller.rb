@@ -47,7 +47,7 @@ class BuffetsController < ApplicationController
 
 
     if @buffet.save
-      flash[:notice] = 'Buffet cadastrado com sucesso'
+      flash[:notice] = 'Buffet registered successfully'
       redirect_to(home_buffet_profile_path)
     else
       flash.now[:notice] = 'Buffet não cadastrado'

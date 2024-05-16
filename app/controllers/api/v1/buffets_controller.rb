@@ -1,7 +1,7 @@
 class Api::V1::BuffetsController < Api::V1::ApiController
   def index
     buffets = Buffet.all#.order(:brand_name)
-    render status: 200, json: buffets.as_json(except: [:created_at, :updated_at])
+    render status: 200, json: buffets.as_json(except: [:corporate_name, :registration_number, :created_at, :updated_at])
   end
 
   def show

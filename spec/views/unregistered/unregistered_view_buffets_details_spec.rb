@@ -115,7 +115,7 @@ describe 'A partir da home, Visitante acessa buffet' do
     expect(page).to have_content('Ipatinga')
     expect(page).to have_content(35322124)
     expect(page).to have_content('Cash_and_Card')
-    expect(page).to have_content('Não existem eventos cadastrados para este buffet')
+    expect(page).to have_content('There are no events registered for this buffet')
   end
 
   it 'e vê detalhes de um buffet com evento cadastrado' do
@@ -182,7 +182,7 @@ describe 'A partir da home, Visitante acessa buffet' do
     click_on('Buffet Elegance')
 
     expect(page).to have_content('Buffet Elegance')
-    expect(page).not_to have_content('Não existem eventos cadastrados para este buffet')
+    expect(page).not_to have_content('There are no events registered for this buffet')
     expect(page).to have_content('Festa de 15 anos')
     expect(page).to have_content('Um evento memorável para uma debutante especial')
     expect(page).to have_content('Avenida das Flores, 321, Centro, MG - Caratinga')

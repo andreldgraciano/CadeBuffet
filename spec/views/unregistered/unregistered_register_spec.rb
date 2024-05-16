@@ -28,7 +28,7 @@ describe 'Visitante faz cadastro' do
       end
 
       expect(current_path).to eq(new_buffet_path)
-      expect(page).to have_content('Cadastre seu buffet')
+      expect(page).to have_content('Register your buffet')
     end
   end
 
