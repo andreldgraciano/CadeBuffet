@@ -15,19 +15,19 @@ class Api::V1::EventsController < Api::V1::ApiController
 
     if param_date && param_amount_people
       if order.exists?
-        resposta = {resposta: "Indisponível para data #{date}"}
+        resposta = {resposta: "Unavailable for date #{date}"}
         render status: 200, json: resposta.as_json
       else
         if param_amount_people >= event.min_people && param_amount_people <= event.max_people
-          resposta = { status: 'Disponível', nome: event.name, date: param_date, amount_people: param_amount_people, total_value: 200 }
+          resposta = { status: 'Available', nome: event.name, date: param_date, amount_people: param_amount_people, total_value: 200 }
           render status: 200, json: resposta.as_json
         else
-          resposta = {resposta: 'Evento indisponível para esta quantidade de pessoas', min_people: event.min_people, max_people: event.max_people}
+          resposta = {resposta: 'Event unavailable for this number of people', min_people: event.min_people, max_people: event.max_people}
           render status: 200, json: resposta.as_json
         end
       end
     else
-      resposta = {resposta: 'Dados insuficientes'}
+      resposta = {resposta: 'Insufficient data'}
       render status: 200, json: resposta.as_json
     end
   end
