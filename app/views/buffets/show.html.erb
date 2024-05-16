@@ -38,7 +38,7 @@
           <li><%= Event.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
           <li><%= Event.human_attribute_name(:parking) %>: <%= event.parking %></li>
         </ul>
-        <%= link_to 'Fazer pedido', new_order_path(buffet_id: @buffet.id, event_id: event.id) %>
+        <%= link_to 'Place Order', new_order_path(buffet_id: @buffet.id, event_id: event.id) %>
       </div>
       <% end %>
     <% else %>
@@ -47,4 +47,4 @@
   </section>
 </div>
 <br>
-<%= link_to 'Voltar', root_path %>
+<%= link_to 'Back', root_path %>

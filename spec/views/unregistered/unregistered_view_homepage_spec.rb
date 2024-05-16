@@ -65,7 +65,7 @@ describe 'Visitante acessa tela inicial' do
 
     visit(root_path)
 
-    expect(page).to have_content('Não existem buffets cadastrados')
+    expect(page).to have_content('There are no registered buffets')
   end
 
 

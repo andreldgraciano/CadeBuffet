@@ -13,12 +13,12 @@
     <p><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></p>
     <p><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></p>
     <p><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></p>
-    <%= link_to 'Editar buffet', edit_buffet_path(@buffet) %>
+    <%= link_to 'Edit buffet', edit_buffet_path(@buffet) %>
   </section>
   <section style="flex-grow: 1;">
     <div>
       <h3 style="margin: 1rem 0; background-color: rgb(191, 104, 121); border-radius: 5px; padding: 5px 15px; display: inline-block;">
-        <%= link_to 'Cadastrar Evento +', new_event_path%>
+        <%= link_to 'Register Event +', new_event_path%>
       </h3>
     </div>
     
@@ -45,9 +45,9 @@
             <li><%= Event.human_attribute_name(:decoration) %>: <%= event.decoration %></li>
             <li><%= Event.human_attribute_name(:parking) %>: <%= event.parking %></li>
           </ul>
-          <%= link_to 'Editar', edit_event_path(event) %>
+          <%= link_to 'Edit Event', edit_event_path(event) %>
           <br><br>
-          <%= button_to('Remover', event, method: :delete) %>
+          <%= button_to('Remove', event, method: :delete) %>
         </div>
         <% end %>
       <% else %>

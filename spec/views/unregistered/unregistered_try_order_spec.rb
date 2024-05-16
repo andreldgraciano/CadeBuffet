@@ -44,10 +44,10 @@ describe 'Visitante tenta criar um pedido' do
 
     visit(root_path)
     click_on('Buffet Real')
-    click_on('Fazer pedido')
+    click_on('Place Order')
 
 
     expect(current_path).to eq(buffets_path)
-    expect(page).to have_content('Você precisa estar autenticado como client para criar um pedido')
+    expect(page).to have_content('You need to be authenticated as a client to create an order')
   end
 end

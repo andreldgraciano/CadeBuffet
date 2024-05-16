@@ -6,8 +6,6 @@ class OrdersController < ApplicationController
 
   before_action :authorization_access_order!, only: [:show, :accept, :confirm, :cancel]
 
-
-
   def index
     set_orders()
   end
@@ -50,10 +48,10 @@ class OrdersController < ApplicationController
     end
 
     if @order.save
-      redirect_to @order, notice: 'Pedido cadastrado com sucesso'
+      redirect_to @order, notice: 'Order registered successfully'
     else
       set_buffet_and_event()
-      flash.now[:notice] = 'Pedido não cadastrado'
+      flash.now[:notice] = 'Request not registered'
       render 'new'
     end
   end
@@ -62,27 +60,27 @@ class OrdersController < ApplicationController
   def accept
     @order.update(order_params_accept)
     calc_value_order_accepted
-    redirect_to @order, notice: 'Pedido aceito com sucesso'
+    redirect_to @order, notice: 'Request accepted successfully'
   end
 
   def confirm
     @order.update(status: 'Pedido confirmado pelo cliente')
-    redirect_to @order, notice: 'Pedido confirmado com sucesso'
+    redirect_to @order, notice: 'Order confirmed successfully'
   end
 
   def cancel
     @order.update(status: 'Pedido cancelado')
-    redirect_to @order, notice: 'Pedido cancelado com sucesso'
+    redirect_to @order, notice: 'Order canceled successfully'
   end
 
   private
 
   def authenticate_client!
-    redirect_to root_path, notice: 'Você precisa estar autenticado como client para criar um pedido' unless client_signed_in?
+    redirect_to root_path, notice: 'You need to be authenticated as a client to create an order' unless client_signed_in?
   end
 
   def authenticate_buffet_profile_or_client!
-    redirect_to root_path, notice: 'Você precisa estar autenticado como client ou buffet_profile para acessar um pedido' unless buffet_profile_signed_in? || client_signed_in?
+    redirect_to root_path, notice: 'You need to be authenticated as client or buffet_profile to access an order' unless buffet_profile_signed_in? || client_signed_in?
   end
 
   def set_order
@@ -124,10 +122,10 @@ class OrdersController < ApplicationController
 
   def authorization_access_order!
     if buffet_profile_signed_in? && current_buffet_profile.buffet.id != @order.buffet.id
-      flash[:notice] = 'Você não tem permissão para acessar pedidos de outros biffets'
+      flash[:notice] = 'You are not allowed to access orders from other buffets'
       redirect_to home_buffet_profile_path
     elsif client_signed_in? && current_client.id != @order.client.id
-      flash[:notice] = 'Você não tem permissão para acessar pedidos de outros clientes'
+      flash[:notice] = 'You are not allowed to access orders from other clients'
       redirect_to root_path
     end
   end

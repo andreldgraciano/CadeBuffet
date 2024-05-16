@@ -14,9 +14,9 @@ class BuffetsController < ApplicationController
   def index
     if buffet_profile_signed_in?
       if params[:query]
-        flash[:notice] = 'Funcionalidade de pesquisa não autorizada para donos de buffet'
+        flash[:notice] = 'Unauthorized search functionality for buffet owners'
       end
-      flash[:notice] = 'Você só pode acessar o seu buffet'
+      flash[:notice] = 'You can only access your buffet'
       redirect_to home_buffet_profile_path
     else
       if params[:query]
@@ -38,7 +38,7 @@ class BuffetsController < ApplicationController
 
   def create
     if Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
-      return redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu buffet'
+      return redirect_to home_buffet_profile_path, alert: 'You have already registered your buffet'
     end
 
     @buffet = Buffet.new(buffet_params)
@@ -50,7 +50,7 @@ class BuffetsController < ApplicationController
       flash[:notice] = 'Buffet registered successfully'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Buffet não cadastrado'
+      flash.now[:notice] = 'Buffet not registered'
       return render('new')
     end
   end
@@ -60,10 +60,10 @@ class BuffetsController < ApplicationController
 
   def update
     if @buffet.update(buffet_params)
-      flash[:notice] = 'Buffet atualizado com sucesso'
+      flash[:notice] = 'Successfully updated buffet'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Buffet não pôde ser atualizado'
+      flash.now[:notice] = 'Buffet could not be updated'
       render('edit')
     end
   end
@@ -87,14 +87,14 @@ class BuffetsController < ApplicationController
   end
 
   def authorize_buffet_show
-    redirect_to home_buffet_profile_path, alert: 'Você só pode acessar o seu buffet' unless !current_buffet_profile
+    redirect_to home_buffet_profile_path, alert: 'You can only access your buffet' unless !current_buffet_profile
   end
 
   def authorize_buffet_new_create
-    redirect_to home_buffet_profile_path, alert: 'Você já cadastrou o seu biffet' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
+    redirect_to home_buffet_profile_path, alert: 'You have already registered your buffet' unless !Buffet.exists?(buffet_profile_id: current_buffet_profile.id)
   end
 
   def authorize_buffet_edit_update
-    redirect_to home_buffet_profile_path, alert: 'Você não tem acesso para modificar este biffet' unless @buffet_profile == current_buffet_profile
+    redirect_to home_buffet_profile_path, alert: 'You do not have access to modify this buffet' unless @buffet_profile == current_buffet_profile
   end
 end

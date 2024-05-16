@@ -4,41 +4,45 @@
     <%= render('details_order_client') %>
   </section>
   
-  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
-  <%= link_to 'Voltar em Meus Pedidos', orders_path %>
+  <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
+  <%= link_to 'Back to my Orders', orders_path %>
 
 <% elsif @order.status == 'Pedido aceito pelo buffet' %>
 
   <section>
     <%= render('details_order_client') %>
-    <h3>Preço Original: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
-    <h3>Desconto: <%= @order.discount %></h3>
+
+    <p>Order vality: <%= @order.order_vality %></p>
+    <h3>Original Price: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
+    <h3>Discount: <%= @order.discount %></h3>
     <p><%= @order.discount_description %></p>
-    <h3>Taxa Extra: <%= @order.surcharge %></h3>
+    <h3>Surcharge: <%= @order.surcharge %></h3>
     <p><%= @order.surcharge_description %></p>
     <h2>TOTAL: R$ <%= @order.total_value %></h2>
-    <p>Forma de Pagamento: <%= @order.payment %></p>
+    <p>Form of payment: <%= @order.payment %></p>
   </section>
 
-  <%= button_to 'Confirmar', confirm_order_path(@order), method: :post %> <br><br>
-  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
-  <%= link_to 'Voltar em Meus Pedidos', orders_path %>
+  <%= button_to 'Confirm', confirm_order_path(@order), method: :post %> <br><br>
+  <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
+  <%= link_to 'Back to my Orders', orders_path %>
 
 <% elsif @order.status == 'Pedido confirmado pelo cliente' %>
 
   <section>
     <%= render('details_order_client') %>
-    <h3>Preço Original: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
-    <h3>Desconto: <%= @order.discount %></h3>
+
+    <p>Order vality: <%= @order.order_vality %></p>
+    <h3>Original Price: <%= @order.total_value + @order.discount - @order.surcharge %></h3>
+    <h3>Discount: <%= @order.discount %></h3>
     <p><%= @order.discount_description %></p>
-    <h3>Taxa Extra: <%= @order.surcharge %></h3>
+    <h3>Surcharge: <%= @order.surcharge %></h3>
     <p><%= @order.surcharge_description %></p>
     <h2>TOTAL: R$ <%= @order.total_value %></h2>
-    <p>Forma de Pagamento: <%= @order.payment %></p>
+    <p>Form of payment: <%= @order.payment %></p>
   </section>
 
-  <%= button_to 'Cancelar', cancel_order_path(@order), method: :post %> <br><br>
-  <%= link_to 'Voltar em Meus Pedidos', orders_path %>
+  <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
+  <%= link_to 'Back to my Orders', orders_path %>
 
 <% elsif @order.status == 'Pedido cancelado' %>
 
@@ -46,5 +50,5 @@
     <%= render('details_order_client') %>
   </section>
 
-  <%= link_to 'Voltar em Meus Pedidos', orders_path %>
+  <%= link_to 'Back to my Orders', orders_path %>
 <% end %>

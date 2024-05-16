@@ -24,7 +24,7 @@ describe 'A partir da home, Visitante acessa buffet' do
 
     visit(root_path)
     click_on('Buffet Real')
-    click_on('Voltar')
+    click_on('Back')
 
     expect(current_path).to eq(buffets_path)
   end

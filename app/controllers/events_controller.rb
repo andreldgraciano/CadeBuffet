@@ -15,10 +15,10 @@ class EventsController < ApplicationController
     @event.buffet_id = @buffet.id
 
     if @event.save
-      flash[:notice] = 'Evento cadastrado com sucesso!'
+      flash[:notice] = 'Event registered successfully'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Evento não cadastrado.'
+      flash.now[:notice] = 'Event not registered'
       return render('new')
     end
   end
@@ -27,17 +27,17 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      flash[:notice] = 'evento atualizado com sucesso!'
+      flash[:notice] = 'Event updated successfully'
       redirect_to(home_buffet_profile_path)
     else
-      flash.now[:notice] = 'Evento não pôde ser atualizado.'
+      flash.now[:notice] = 'Event could not be updated'
       render('edit')
     end
   end
 
   def destroy
     @event.destroy
-    flash[:notice] = 'Evento removido com sucesso!'
+    flash[:notice] = 'Event removed successfully'
     redirect_to(home_buffet_profile_path)
   end
 
@@ -59,7 +59,7 @@ class EventsController < ApplicationController
 
   def authorize_buffet_profile_edit_update_destroy_own_event
     unless current_buffet_profile.buffet.events.include?(@event)
-      flash[:alert] = "Você não tem permissão para manipular evento de outros buffets."
+      flash[:alert] = "You are not allowed to manipulate other buffets' events"
       redirect_to home_buffet_profile_path
     end
   end

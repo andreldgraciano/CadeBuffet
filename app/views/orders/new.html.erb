@@ -1,7 +1,7 @@
-<h1>Registrar Pedido</h1>
+<h1>Register Order</h1>
 
 <% if @order.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
+  <p>Check the errors below:</p>
   <ul>
   <% @order.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
@@ -42,12 +42,12 @@
 
   <% if @event.venue_preference != 'exclusivamente no endereço do buffet' %>
     <div>
-      <%= form.label :venue, "Se o local do evento for diferente do disponibilizado pelo buffet (#{@event.address}), preencha o campo abaixo:" %> <br>
+      <%= form.label :venue, "If the event location is different from that provided by the buffet (#{@event.address}), fill in the field below:" %> <br>
       <%= form.text_field :venue  %> <br><br>
     </div>
   <% else %>
     <div>
-      <%= form.label :venue, "Local do evento (endereço disponibilizado pelo buffet):" %> <br>
+      <%= form.label :venue, "Event location (address provided by the buffet):" %> <br>
       <%= form.text_field :venue, readonly: true, value: @event.address %> <br><br>
     </div>
   <% end %>
