@@ -11,7 +11,7 @@ class Api::V1::EventsController < Api::V1::ApiController
     day, month, year = param_date.split('/').map(&:to_i)
     date = Date.new(year, month, day)
 
-    order = Order.where(event_day: date).where.not(status: 'Aguardando avaliação do buffet')
+    order = Order.where(event_day: date).where.not(status: 'Waiting for buffet review')
 
     if param_date && param_amount_people
       if order.exists?

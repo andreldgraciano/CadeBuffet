@@ -24,7 +24,7 @@
       </div>
 
       <nav class="header_nav" id="client_session">
-        <%= link_to 'Meus Pedidos', orders_path %>
+        <%= link_to 'My Orders', orders_path %>
         <p style="font-weight: bold;"><%= current_client.name %></p>
         <%= button_to 'Sign Out', destroy_client_session_path, method: :delete %>
       </nav>

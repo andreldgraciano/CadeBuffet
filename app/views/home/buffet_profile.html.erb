@@ -1,6 +1,6 @@
 <div style="display: flex; gap: 5rem;">
   <section>
-    <h1><%= Buffet.model_name.human %> <%= @buffet.brand_name %></h1>
+    <h1><%= Buffet.human_attribute_name(:brand_name) %>: <%= @buffet.brand_name %></h1>
     <p><%= Buffet.human_attribute_name(:corporate_name) %>: <%= @buffet.corporate_name %></p>
     <p><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></p>
     <p><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></p>

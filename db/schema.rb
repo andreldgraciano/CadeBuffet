@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_195135) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_161533) do
   create_table "buffet_profiles", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_195135) do
     t.text "details"
     t.string "code"
     t.string "venue"
-    t.string "status", default: "Aguardando avaliação do buffet"
+    t.string "status", default: "Waiting for buffet review"
     t.date "order_vality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

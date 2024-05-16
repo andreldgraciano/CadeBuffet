@@ -1,4 +1,4 @@
-<% if @order.status == 'Aguardando avaliação do buffet' %>
+<% if @order.status == 'Waiting for buffet review' %>
 
   <section>
     <%= render('details_order_client') %>
@@ -7,7 +7,7 @@
   <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
   <%= link_to 'Back to my Orders', orders_path %>
 
-<% elsif @order.status == 'Pedido aceito pelo buffet' %>
+<% elsif @order.status == 'Order accepted by buffet' %>
 
   <section>
     <%= render('details_order_client') %>
@@ -26,7 +26,7 @@
   <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
   <%= link_to 'Back to my Orders', orders_path %>
 
-<% elsif @order.status == 'Pedido confirmado pelo cliente' %>
+<% elsif @order.status == 'Order confirmed by the client' %>
 
   <section>
     <%= render('details_order_client') %>

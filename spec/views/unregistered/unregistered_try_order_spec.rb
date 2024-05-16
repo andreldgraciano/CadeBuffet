@@ -47,7 +47,7 @@ describe 'Visitante tenta criar um pedido' do
     click_on('Place Order')
 
 
-    expect(current_path).to eq(buffets_path)
+    expect(current_path).to eq(new_client_session_path)
     expect(page).to have_content('You need to be authenticated as a client to create an order')
   end
 end

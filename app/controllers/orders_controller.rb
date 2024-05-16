@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @order.update(status: 'Pedido confirmado pelo cliente')
+    @order.update(status: 'Order confirmed by the client')
     redirect_to @order, notice: 'Order confirmed successfully'
   end
 
@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
   private
 
   def authenticate_client!
-    redirect_to root_path, notice: 'You need to be authenticated as a client to create an order' unless client_signed_in?
+    redirect_to new_client_session_path, notice: 'You need to be authenticated as a client to create an order' unless client_signed_in?
   end
 
   def authenticate_buffet_profile_or_client!

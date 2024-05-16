@@ -1,5 +1,5 @@
 <%= form_with(model: @order, url: accept_order_path(@order), method: :post) do |form| %>
-  <%= form.hidden_field :status, value: 'Pedido aceito pelo buffet' %>
+  <%= form.hidden_field :status, value: 'Order accepted by buffet' %>
 
   <div>
     <%= form.label :discount %> <br>

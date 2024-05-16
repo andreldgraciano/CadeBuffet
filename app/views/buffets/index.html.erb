@@ -7,5 +7,9 @@
     </section>
   <% end %>
 <% else %>
-  <p>There are no registered buffets</p>
+  <% if params[:query] %>
+    <p>Search for "<%= params[:query] %>" not found</p>
+  <% else %>
+    <p>There are no registered buffets</p>
+  <% end %>
 <% end %>
