@@ -106,7 +106,6 @@ event_1 = Event.create!(
   value_extra_hour_weekend: 5000
 )
 
-
 event_2 = Event.create!(
   name: 'Aniversário',
   description: 'Celebre um aniversário em grande estilo!',
