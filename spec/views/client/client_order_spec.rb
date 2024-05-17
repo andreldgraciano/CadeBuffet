@@ -1,9 +1,7 @@
 require 'rails_helper'
 
-describe 'profile buffet atualiza dados de um evento' do
-
-  it 'com sucesso' do
-
+describe 'client atualiza status de pedido' do
+  it 'confirmado com sucesso' do
     buffet_profile = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@'
@@ -43,30 +41,34 @@ describe 'profile buffet atualiza dados de um evento' do
       additional_per_person_weekend: 750,
       value_extra_hour_weekend: 5000
     )
+    client = Client.create!(
+      email: 'andre@gmail.com',
+      name: 'André Dias',
+      cpf: 65971070045,
+      password: 'andre123@'
+    )
+    event_date = 1.month.from_now.to_date
+    formatted_date = event_date.strftime('%Y-%m-%d')
+    order = Order.create!(
+        buffet_id: buffet.id,
+        event_id: event.id,
+        client_id: client.id,
+        event_day: formatted_date,
+        amount_people: 160,
+        details: 'Detalhes do pedido',
+    )
 
-    login_as(buffet_profile, :scope => :buffet_profile)
+    order.update!(status: 'Order accepted by buffet')
+    login_as(client, :scope => :client)
     visit(root_path)
-    within("div##{event.id}") do
-      click_on('Edit Event')
-    end
-    fill_in('Description', with: 'Celebre o noivado em grande estilo')
-    fill_in('Address', with: 'Praia do Ano Novo, S/N, Litoral, BA - Salvador')
-    select('No alcohol', from: 'Alcoholic drink')
-    click_on('Update Event')
+    click_on('My Orders')
+    click_on("Order #{order.code}")
+    click_on('Confirm')
 
-    within("div##{event.id}") do
-      expect(current_path).to eq(home_buffet_profile_path)
-      expect(page).to have_content('Celebre o noivado em grande estilo')
-      expect(page).to have_content('Praia do Ano Novo, S/N, Litoral, BA - Salvador')
-      expect(page).to have_content('no_alcohol')
-      expect(page).not_to have_content('Garantimos um dia inesquecivel para o casal')
-      expect(page).not_to have_content('Rua das Palmeiras, 61, Esplanada, MG - Ipatinga')
-      expect(page).not_to have_content('yes_alcohol')
-    end
+    expect(page).to have_content('Order confirmed by the client')
   end
 
-  it 'e falha por deixar campos em branco' do
-
+  it 'cancela com sucesso' do
     buffet_profile = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@'
@@ -106,20 +108,30 @@ describe 'profile buffet atualiza dados de um evento' do
       additional_per_person_weekend: 750,
       value_extra_hour_weekend: 5000
     )
+    client = Client.create!(
+      email: 'andre@gmail.com',
+      name: 'André Dias',
+      cpf: 65971070045,
+      password: 'andre123@'
+    )
+    event_date = 1.month.from_now.to_date
+    formatted_date = event_date.strftime('%Y-%m-%d')
+    order = Order.create!(
+        buffet_id: buffet.id,
+        event_id: event.id,
+        client_id: client.id,
+        event_day: formatted_date,
+        amount_people: 160,
+        details: 'Detalhes do pedido',
+    )
 
-    login_as(buffet_profile, :scope => :buffet_profile)
+    order.update!(status: 'Order accepted by buffet')
+    login_as(client, :scope => :client)
     visit(root_path)
-    within("div##{event.id}") do
-      click_on('Edit Event')
-    end
-    fill_in('Description', with: '')
-    fill_in('Address', with: '')
-    click_on('Update Event')
+    click_on('My Orders')
+    click_on("Order #{order.code}")
+    click_on('Cancel')
 
-    expect(current_path).to eq(event_path(event.id))
-    expect(page).to have_content('Event could not be updated')
-    expect(page).to have_content('Check the errors below:')
-    expect(page).to have_content("Description can't be blank")
-    expect(page).to have_content("Address can't be blank")
+    expect(page).to have_content('canceled order')
   end
 end
