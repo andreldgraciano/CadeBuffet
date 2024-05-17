@@ -22,7 +22,11 @@ class Api::V1::EventsController < Api::V1::ApiController
           render status: 200, json: resposta.as_json
         else
           if param_amount_people >= event.min_people && param_amount_people <= event.max_people
-            total_value = event.base_price + (param_amount_people - event.min_people) * event.additional_per_person
+            if date.on_weekend?
+              total_value = event.base_price_weekend + (param_amount_people - event.min_people) * event.additional_per_person_weekend
+            else
+              total_value = event.base_price + (param_amount_people - event.min_people) * event.additional_per_person
+            end
             resposta = { status: 'Available', nome: event.name, date: param_date, amount_people: param_amount_people, total_value: total_value }
             render status: 200, json: resposta.as_json
           else
