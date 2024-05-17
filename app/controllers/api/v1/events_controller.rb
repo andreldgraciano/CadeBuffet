@@ -27,7 +27,7 @@ class Api::V1::EventsController < Api::V1::ApiController
             else
               total_value = event.base_price + (param_amount_people - event.min_people) * event.additional_per_person
             end
-            resposta = { status: 'Available', nome: event.name, date: param_date, amount_people: param_amount_people, total_value: total_value }
+            resposta = { status: 'Available', event_name: event.name, date: param_date, amount_people: param_amount_people, total_value: total_value }
             render status: 200, json: resposta.as_json
           else
             resposta = {status: 'Event unavailable for this number of people', min_people: event.min_people, max_people: event.max_people}
