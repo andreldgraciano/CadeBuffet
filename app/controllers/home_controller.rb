@@ -2,16 +2,13 @@ class HomeController < ApplicationController
   before_action :authenticate_buffet_profile!, only: [:buffet_profile]
 
   def index
+    if buffet_profile_signed_in?
+      return redirect_to home_buffet_profile_path
+    end
     redirect_to buffets_path
   end
 
   def buffet_profile
-    redirect_to_root_or_create
-  end
-
-  private
-
-  def redirect_to_root_or_create
     @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile)
 
     if !@buffet

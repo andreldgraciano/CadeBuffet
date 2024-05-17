@@ -142,7 +142,7 @@ describe 'A partir da home, Visitante acessa buffet' do
       buffet_profile_id: buffet_profile_1.id,
       payment: 1,
     )
-    Buffet.create!(
+    buffet_2 = Buffet.create!(
       brand_name: 'Buffet Elegance',
       corporate_name: 'Elegances Buffet LTDA',
       registration_number: 41312312,
@@ -168,7 +168,7 @@ describe 'A partir da home, Visitante acessa buffet' do
       alcoholic_drink: 'yes_alcohol',
       decoration: 'no_decoration',
       parking: 'yes_parking',
-      buffet_id: 2,
+      buffet_id: buffet_2.id,
       venue_preference: 'yes_preference',
       base_price: 10000,
       additional_per_person: 100,

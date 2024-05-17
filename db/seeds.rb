@@ -12,29 +12,29 @@ client_1 = Client.create!(
   email: 'andre@gmail.com',
   name: 'André Dias',
   cpf: 65971070045,
-  password: 'andre123@',
+  password: 'andre123@'
 )
 
 client_2 = Client.create!(
   email: 'ataliba@gmail.com',
   name: 'Ataliba Couto',
   cpf: 92211219098,
-  password: 'ataliba123@',
+  password: 'ataliba123@'
 )
 
 buffet_profile_1 = BuffetProfile.create!(
   email: 'real@gmail.com',
-  password: 'real123@',
+  password: 'real123@'
 )
 
 buffet_profile_2 = BuffetProfile.create!(
   email: 'elegance@gmail.com',
-  password: 'elegance123@',
+  password: 'elegance123@'
 )
 
 buffet_profile_3 = BuffetProfile.create!(
   email: 'villaspalace@gmail.com',
-  password: 'villaspalace123@',
+  password: 'villaspalace123@'
 )
 
 buffet_1 = Buffet.create!(
@@ -50,7 +50,7 @@ buffet_1 = Buffet.create!(
   zip_code: 35162133,
   description: 'Um buffet completo para o seu evento',
   buffet_profile_id: buffet_profile_1.id,
-  payment: 1,
+  payment: 1
 )
 
 buffet_2 = Buffet.create!(
@@ -66,7 +66,7 @@ buffet_2 = Buffet.create!(
   zip_code: 18382240,
   description: 'Um show de elegancia para o seu buffet',
   buffet_profile_id: buffet_profile_2.id,
-  payment: 0,
+  payment: 0
 )
 
 buffet_3 = Buffet.create!(
@@ -82,7 +82,7 @@ buffet_3 = Buffet.create!(
   zip_code: 7454562514,
   description: 'Um show de elegancia para o seu buffet',
   buffet_profile_id: buffet_profile_3.id,
-  payment: 0,
+  payment: 0
 )
 
 event_1 = Event.create!(

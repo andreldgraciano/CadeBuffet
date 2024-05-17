@@ -16,7 +16,7 @@ class BuffetsController < ApplicationController
       if params[:query]
         flash[:notice] = 'Unauthorized search functionality for buffet owners'
       end
-      flash[:notice] = 'You can only access your buffet'
+      flash[:notice] = 'You can only access your buffet!!'
       redirect_to home_buffet_profile_path
     else
       if params[:query]
