@@ -38,26 +38,25 @@
             <li><%= Event.human_attribute_name(:duration) %>: <%= event.duration %> min</li>
             <li style="list-style-type: none;"><%= event.alcoholic_drink %> | <%= event.venue_preference %> | <%= event.decoration %> | <%= event.parking %></li>
           </ul>
-          <p></p>
           <table>
             <tr>
-            <td style="background-color: antiquewhite;"></td>
-            <td>base price</td>
-            <td>additional per person</td>
-            <td>value overtime</td>
-          </tr>
-          <tr>
-            <td>Day of Week</td>
-            <td><%= event.base_price %></td>
-            <td><%= event.additional_per_person %></td>
-            <td><%= event.value_extra_hour %></td>
-          </tr>
-          <tr>
-            <td>Weekend</td>
-            <td><%= event.base_price_weekend %></td>
-            <td><%= event.additional_per_person_weekend %></td>
-            <td><%= event.value_extra_hour_weekend %></td>
-          </tr>
+              <td style="background-color: antiquewhite;"></td>
+              <td>base price</td>
+              <td>additional per person</td>
+              <td>value overtime</td>
+            </tr>
+            <tr>
+              <td>Day of Week</td>
+              <td><%= event.base_price %></td>
+              <td><%= event.additional_per_person %></td>
+              <td><%= event.value_extra_hour %></td>
+            </tr>
+            <tr>
+              <td>Weekend</td>
+              <td><%= event.base_price_weekend %></td>
+              <td><%= event.additional_per_person_weekend %></td>
+              <td><%= event.value_extra_hour_weekend %></td>
+            </tr>
           </table>
           <%= link_to 'Edit Event', edit_event_path(event) %>
           <br><br>
