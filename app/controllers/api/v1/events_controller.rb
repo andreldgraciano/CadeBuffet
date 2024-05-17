@@ -36,7 +36,7 @@ class Api::V1::EventsController < Api::V1::ApiController
         end
       else
         resposta = {status: 'Insufficient data'}
-        render status: 200, json: resposta.as_json
+        render status: 400, json: resposta.as_json
       end
     end
 

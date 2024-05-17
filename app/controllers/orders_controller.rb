@@ -28,22 +28,11 @@ class OrdersController < ApplicationController
     @order.event = Event.find(params[:order][:event_id])
     @order.client = current_client
 
-    # Atualize o total do pedido com base nos dados do evento
     if @order.amount_people
-      # puts '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/'
-      # puts "@order.event.base_price: #{@order.event.base_price}"
-      # puts "@order.event.value_extra_hour: #{@order.event.value_extra_hour}"
-      # puts "@order.event.additional_per_person: #{@order.event.additional_per_person}"
-      # puts "@order.event.base_price_weekend: #{@order.event.base_price_weekend}"
-      # puts "@order.event.value_extra_hour_weekend: #{@order.event.value_extra_hour_weekend}"
-      # puts "@order.event.additional_per_person_weekend: #{@order.event.additional_per_person_weekend}"
-      # puts '/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/'
       if @order.event_day.on_weekend?
-        # puts "@order.total_value (FINAL DE SEMANA): #{@order.total_value}"
         @order.total_value = @order.event.base_price_weekend + (@order.extra_hour * @order.event.value_extra_hour_weekend) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person_weekend
       else
         @order.total_value = @order.event.base_price + (@order.extra_hour * @order.event.value_extra_hour) + (@order.amount_people - @order.event.min_people) * @order.event.additional_per_person
-        # puts "@order.total_value (DIA DE SEMANA): #{@order.total_value (DIA DE SEMANA)}"
       end
     end
 

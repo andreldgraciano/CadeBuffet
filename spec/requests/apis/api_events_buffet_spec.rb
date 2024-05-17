@@ -5,6 +5,7 @@ describe 'Buffet API' do
   context 'GET /api/v1/events_buffet/id' do
 
     it 'e retorna a coleçao de eventos de um buffet' do
+      
       buffet_profile_1 = BuffetProfile.create!(
         email: 'real@gmail.com',
         password: 'real123@',
@@ -171,6 +172,14 @@ describe 'Buffet API' do
       get('/api/v1/events_buffet/999999')
 
       expect(response).to have_http_status(500)
+    end
+
+    it 'e falha se não encontrar o buffet' do
+      # Arrange
+
+      get( '/api/v1/events_buffet/999999999')
+
+      expect(response.status).to eq(404)
     end
   end
 end

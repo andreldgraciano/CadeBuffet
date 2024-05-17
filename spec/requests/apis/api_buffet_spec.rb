@@ -5,6 +5,7 @@ describe 'Buffet API' do
   context 'GET /api/v1/buffets' do
 
     it 'e retorna a coleçao de buffets' do
+      
       buffet_profile_1 = BuffetProfile.create!(
         email: 'real@gmail.com',
         password: 'real123@',
