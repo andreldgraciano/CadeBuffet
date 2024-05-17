@@ -1,5 +1,5 @@
 <% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order && order.status != 'Pedido cancelado' && @order.status != 'Pedido cancelado'} %>
-  <h3 style="background-color: yellow;">MAIS DE UM PEDIDO ATIVO PARA O MESMO DIA!</h3>
+  <h3 style="background-color: #f5c842; display: inline-block; padding: 10px; border-radius: 5px;">MORE THAN ONE ACTIVE ORDER FOR THE SAME DAY!</h3> <br> <br> 
 <% end %>
 
 <% if @order.status == 'Waiting for buffet review' %>

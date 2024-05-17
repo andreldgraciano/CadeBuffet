@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   enum payment: { Cash: 0, Cash_and_Card: 1 }
 
-  before_validation :generate_code
+  before_create :generate_code
 
   validates :event_day, :amount_people, presence: true
 
@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   private
 
   def generate_code
-    self.code = SecureRandom.alphanumeric(8)
+    self.code ||= SecureRandom.alphanumeric(8)
   end
 
   def validate_event_day

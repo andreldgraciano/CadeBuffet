@@ -47,9 +47,14 @@ class OrdersController < ApplicationController
 
   # check_order_vality
   def accept
-    @order.update(order_params_accept)
-    calc_value_order_accepted
-    redirect_to @order, notice: 'Request accepted successfully'
+    @buffet = Buffet.find(@order.buffet.id)
+    if @buffet.orders.any? { |order| order.event_day == @order.event_day && order.status != 'Waiting for buffet review' }
+      redirect_to @order, notice: 'You already have a confirmed order for this date!'
+    else
+      @order.update(order_params_accept)
+      calc_value_order_accepted
+      redirect_to @order, notice: 'Request accepted successfully'
+    end
   end
 
   def confirm
