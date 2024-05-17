@@ -1,5 +1,5 @@
-<% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order && order.status != 'Pedido cancelado' && @order.status != 'Pedido cancelado'} %>
-  <h3 style="background-color: #f5c842; display: inline-block; padding: 10px; border-radius: 5px;">MORE THAN ONE ACTIVE ORDER FOR THE SAME DAY!</h3> <br> <br> 
+<% if @orders.any? { |order| order.event_day.to_date == @order.event_day.to_date && order != @order && order.status != 'canceled order' && @order.status != 'canceled order'} %>
+  <h3 style="background-color: #f5c842; display: inline-block; padding: 10px; border-radius: 5px;">MORE THAN ONE ACTIVE ORDER FOR THE SAME DAY!</h3> <br> <br>
 <% end %>
 
 <% if @order.status == 'Waiting for buffet review' %>
@@ -40,6 +40,6 @@
 
   <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
 
-<% elsif @order.status == 'Pedido cancelado' %>
+<% elsif @order.status == 'canceled order' %>
   <%= render('details_order_buffet_profile') %>
 <% end %>

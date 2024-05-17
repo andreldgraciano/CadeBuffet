@@ -44,7 +44,7 @@
   <%= button_to 'Cancel', cancel_order_path(@order), method: :post %> <br><br>
   <%= link_to 'Back to my Orders', orders_path %>
 
-<% elsif @order.status == 'Pedido cancelado' %>
+<% elsif @order.status == 'canceled order' %>
 
   <section>
     <%= render('details_order_client') %>

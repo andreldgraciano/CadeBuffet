@@ -4,7 +4,7 @@
         order.status == 'Waiting for buffet review' ? 0 :
         (order.status == 'Order accepted by buffet' ? 1 :
         (order.status == 'Order confirmed by the client' ? 2 :
-        (order.status == 'Pedido cancelado' ? 3 : 4))), order.created_at] }.each do |order| %>
+        (order.status == 'canceled order' ? 3 : 4))), order.created_at] }.each do |order| %>
           <section>
             <h1><%= link_to "Order #{order.code}", order_path(order) %></h1>
             <p>Event day: <%= order.event_day %></p>

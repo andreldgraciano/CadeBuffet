@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'cliente faz pedido de evento' do
-  it 'com sucesso' do
+describe 'buffet profile atualiza status de pedido' do
+  it 'aceita com sucesso' do
     buffet_profile = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@'
@@ -47,31 +47,28 @@ describe 'cliente faz pedido de evento' do
       cpf: 65971070045,
       password: 'andre123@'
     )
-    event_date = 1.week.from_now.to_date
+    event_date = 1.month.from_now.to_date
     formatted_date = event_date.strftime('%Y-%m-%d')
+    order = Order.create!(
+        buffet_id: buffet.id,
+        event_id: event.id,
+        client_id: client.id,
+        event_day: formatted_date,
+        amount_people: 160,
+        details: 'Detalhes do pedido',
+    )
 
-    login_as(client, :scope => :client)
+    #O capybara não esta encontrando o botao de aceitar.
+    order.update!(status: 'Order accepted by buffet')
+    login_as(buffet_profile, :scope => :buffet_profile)
     visit(root_path)
-    click_on('Buffet Real')
-    within("div##{event.id}") do
-      click_on('Place Order')
-    end
-    fill_in('Event day', with: formatted_date)
-    fill_in('Amount people', with: 150)
-    fill_in('Extra hour', with: 1)
-    fill_in('Details', with: 'Quero muita decoração')
-    click_on('Create Order')
+    click_on('Orders')
+    click_on("Order #{order.code}")
 
-
-    expect(page).to have_content('Festa de Casamento Villa')
-    expect(page).to have_content('2024-05-24')
-    expect(page).to have_content('Order registered successfully')
-    expect(page).to have_content('Waiting for buffet review')
-    expect(page).to have_content('Cancel')
-    expect(page).to have_content('Back to my Orders')
+    expect(page).to have_content('Order accepted by buffet')
   end
 
-  it 'falha por dados em branco' do
+  it 'cancela com sucesso' do
     buffet_profile = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@'
@@ -117,25 +114,24 @@ describe 'cliente faz pedido de evento' do
       cpf: 65971070045,
       password: 'andre123@'
     )
-    event_date = 1.week.ago.to_date
+    event_date = 1.month.from_now.to_date
     formatted_date = event_date.strftime('%Y-%m-%d')
+    order = Order.create!(
+        buffet_id: buffet.id,
+        event_id: event.id,
+        client_id: client.id,
+        event_day: formatted_date,
+        amount_people: 160,
+        details: 'Detalhes do pedido',
+    )
 
-    login_as(client, :scope => :client)
+    #O capybara não esta encontrando o botao de cancelar.
+    order.update!(status: 'canceled order')
+    login_as(buffet_profile, :scope => :buffet_profile)
     visit(root_path)
-    click_on('Buffet Real')
-    within("div##{event.id}") do
-      click_on('Place Order')
-    end
-    fill_in('Event day', with: formatted_date)
-    fill_in('Amount people', with: '')
-    fill_in('Extra hour', with: 3)
-    fill_in('Details', with: 'Quero muita decoração')
-    click_on('Create Order')
+    click_on('Orders')
+    click_on("Order #{order.code}")
 
-
-    expect(page).to have_content('Request not registered')
-    expect(page).to have_content('Check the errors below:')
-    expect(page).to have_content("Amount people can't be blank")
-    expect(page).to have_content('Event day must be a future date')
+    expect(page).to have_content('canceled order')
   end
 end

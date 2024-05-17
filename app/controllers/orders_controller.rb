@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    @order.update(status: 'Pedido cancelado')
+    @order.update(status: 'canceled order')
     redirect_to @order, notice: 'Order canceled successfully'
   end
 
