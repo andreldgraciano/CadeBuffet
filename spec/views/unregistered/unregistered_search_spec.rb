@@ -75,7 +75,7 @@ describe 'Visitante faz pesquisa' do
     expect(page).to have_content('ES')
   end
 
-  it 'com sucesso' do
+  it 'e nao encontra buffets' do
     buffet_profile_1 = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@',

@@ -1,26 +1,26 @@
 <div style="display: flex; gap: 5rem;">
   <section>
-    <h2><%= Buffet.human_attribute_name(:brand_name) %>: <%= @buffet.brand_name %></h2>
-    <p><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></p>
+    <h2><%= @buffet.brand_name %></h2>
+    <h3><%= @buffet.description %></h3>
       <ul>
-        <li><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></li>
-        <li><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></li>
-        <li><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></li>
-        <li><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></li>
-        <li><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></li>
-        <li><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></li>
-        <li><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></li>
-        <li><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></li>
-        <li><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></li>
-      </ul>
+      <li><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></li>
+      <li><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></li>
+      <li><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></li>
+      <li><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></li>
+      <li><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></li>
+      <li><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></li>
+      <li><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></li>
+      <li><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></li>
+      <li><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></li>
+    </ul>
   </section>
     
   <section style="display: flex; gap: 1rem;">
     <% if @buffet.events.any? %>
       <% @buffet.events.each do |event|%>
       <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem; margin: 1rem 0; max-width: 400px;">
-        <h2><%= Event.human_attribute_name(:name) %>: <%= event.name %></h2>
-        <p><%= Event.human_attribute_name(:description) %>: <%= event.description %></p>
+        <h2><%= event.name %></h2>
+        <h3><%= event.description %></h3>
         <ul>
           <li><%= Event.human_attribute_name(:address) %>: <%= event.address %></li>
           <li><%= Event.human_attribute_name(:menu) %>: <%= event.menu %></li>

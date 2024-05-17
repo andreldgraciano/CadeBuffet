@@ -16,17 +16,13 @@ class BuffetsController < ApplicationController
       if params[:query]
         flash[:notice] = 'Unauthorized search functionality for buffet owners'
       end
-      flash[:notice] = 'You can only access your buffet!!'
+      flash[:notice] = 'You can only access your buffet'
       redirect_to home_buffet_profile_path
     else
       if params[:query]
         query = params[:query]
-        # puts "Buffet.all: #{Buffet.all.inspect}"
-        # puts "query: #{query}"
-        # @buffets = Buffet.joins(:events).where("brand_name LIKE ? OR city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
         @buffets = Buffet.where("brand_name LIKE ? OR city LIKE ?", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
         @buffets = Buffet.left_joins(:events).where("buffets.brand_name LIKE ? OR buffets.city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
-        # puts "@buffets.inspect: #{@buffets.inspect}"
       else
         @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
       end

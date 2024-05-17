@@ -1,47 +1,54 @@
+body{
+  padding: 0px 15px;
+}
+
 #header {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  /* justify-content: space-between; */
+  gap: 1px;
   
   .header_logo{
     background-color: rgb(191, 104, 121);
     color: #FFF;
     flex-grow: 1;
+    padding: 0 0 30px 30px;
   }
   
   .header_nav {
     display: flex;
     flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
   
     .nav_options{
       display: flex;
-      gap: 1rem;
+      gap: 1px;
+      height: 100%;
 
       .nav_option {
         background-color: rgb(191, 104, 121);
         padding: 10px;
         display: flex;
         flex-direction:column;
-        align-items: center;
+        text-align: center;
         min-width: 100px;
+        justify-content: center;
     
         p {
           font-weight: bold;
-          
+        }
+
+        a {
+          color: #FFF
         }
       
         .nav_links {
           display: flex;
           flex-direction: column;
-          gap: 5px;
-          
-          a {
-            color: #FFF
-          }
+          gap: 10px;
         }
       }
     }
   }
-  
-  
 }

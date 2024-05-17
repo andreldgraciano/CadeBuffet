@@ -1,18 +1,20 @@
 <div style="display: flex; gap: 5rem;">
   <section>
-    <h1><%= Buffet.human_attribute_name(:brand_name) %>: <%= @buffet.brand_name %></h1>
-    <p><%= Buffet.human_attribute_name(:corporate_name) %>: <%= @buffet.corporate_name %></p>
-    <p><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></p>
-    <p><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></p>
-    <p><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></p>
-    <p><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></p>
-    <p><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></p>
-    <p><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></p>
-    <p><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></p>
-    <p><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></p>
-    <p><%= Buffet.human_attribute_name(:description) %>: <%= @buffet.description %></p>
-    <p><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></p>
-    <p><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></p>
+    <h2><%= @buffet.brand_name %></h2>
+    <h3><%= @buffet.description %></h3>
+      <ul>
+      <li><%= Buffet.human_attribute_name(:corporate_name) %>: <%= @buffet.corporate_name %></li>
+      <li><%= Buffet.human_attribute_name(:registration_number) %>: <%= @buffet.registration_number %></li>
+      <li><%= Buffet.human_attribute_name(:phone) %>: <%= @buffet.phone %></li>
+      <li><%= Buffet.human_attribute_name(:email) %>: <%= @buffet.email %></li>
+      <li><%= Buffet.human_attribute_name(:address) %>: <%= @buffet.address %></li>
+      <li><%= Buffet.human_attribute_name(:district) %>: <%= @buffet.district %></li>
+      <li><%= Buffet.human_attribute_name(:state) %>: <%= @buffet.state %></li>
+      <li><%= Buffet.human_attribute_name(:city) %>: <%= @buffet.city %></li>
+      <li><%= Buffet.human_attribute_name(:zip_code) %>: <%= @buffet.zip_code %></li>
+      <li><%= Buffet.human_attribute_name(:payment) %>: <%= @buffet.payment %></li>
+      <li><%= Buffet.human_attribute_name(:buffet_profile_id) %>: <%= @buffet.buffet_profile.email %></li>
+    </ul>
     <%= link_to 'Edit buffet', edit_buffet_path(@buffet) %>
   </section>
   <section style="flex-grow: 1;">
@@ -26,9 +28,9 @@
       <% if @buffet.events.any? %>
         <% @buffet.events.each do |event|%>
         <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem;">
-          <h2><%= Event.human_attribute_name(:name) %>: <%= event.name %></h2>
+          <h2><%= event.name %></h2>
+          <h3><%= event.description %></h3>
           <ul>
-            <li><%= Event.human_attribute_name(:description) %>: <%= event.description %></li>
             <li><%= Event.human_attribute_name(:min_people) %>: <%= event.min_people %></li>
             <li><%= Event.human_attribute_name(:max_people) %>: <%= event.max_people %></li>
             <li><%= Event.human_attribute_name(:duration) %>: <%= event.duration %></li>
