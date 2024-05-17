@@ -85,7 +85,7 @@ buffet_3 = Buffet.create!(
   payment: 0,
 )
 
-event_3 = Event.create!(
+event_1 = Event.create!(
   name: 'Festa de Casamento Villa',
   description: 'Garantimos um dia inesquecivel para o casal',
   min_people: 150,
@@ -104,4 +104,152 @@ event_3 = Event.create!(
   base_price_weekend: 25000,
   additional_per_person_weekend: 750,
   value_extra_hour_weekend: 5000
+)
+
+
+event_2 = Event.create!(
+  name: 'Aniversário',
+  description: 'Celebre um aniversário em grande estilo!',
+  min_people: 50,
+  max_people: 100,
+  duration: 180,
+  menu: 'Salgadinhos, Bolo, Refrigerante, Docinhos',
+  address: 'Avenida das Flores, 123, Centro, SP - São Paulo',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 2,
+  venue_preference: 'no_preference',
+  base_price: 8000,
+  additional_per_person: 200,
+  value_extra_hour: 1500,
+  base_price_weekend: 12000,
+  additional_per_person_weekend: 300,
+  value_extra_hour_weekend: 2000
+)
+
+event_3 = Event.create!(
+  name: 'Festa de Formatura',
+  description: 'Celebre a conquista com uma festa inesquecível!',
+  min_people: 80,
+  max_people: 150,
+  duration: 240,
+  menu: 'Coquetel, Buffet de Massas, Bebidas Variadas',
+  address: 'Rua dos Estudantes, 456, Universitário, RJ - Rio de Janeiro',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 3,
+  venue_preference: 'no_preference',
+  base_price: 12000,
+  additional_per_person: 300,
+  value_extra_hour: 2000,
+  base_price_weekend: 18000,
+  additional_per_person_weekend: 450,
+  value_extra_hour_weekend: 3000
+)
+
+event_4 = Event.create!(
+  name: 'Festa de Natal da Empresa',
+  description: 'Celebre o espírito natalino com seus colegas!',
+  min_people: 30,
+  max_people: 80,
+  duration: 180,
+  menu: 'Jantar, Vinho, Sobremesas',
+  address: 'Av. dos Trabalhadores, 789, Industrial, PR - Curitiba',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 1,
+  venue_preference: 'no_preference',
+  base_price: 6000,
+  additional_per_person: 150,
+  value_extra_hour: 1000,
+  base_price_weekend: 9000,
+  additional_per_person_weekend: 225,
+  value_extra_hour_weekend: 1500
+)
+
+event_5 = Event.create!(
+  name: 'Chá de Bebê',
+  description: 'Celebre a chegada do bebê com amigos e familiares!',
+  min_people: 20,
+  max_people: 50,
+  duration: 120,
+  menu: 'Bolo, Docinhos, Salgadinhos, Refrigerante',
+  address: 'Rua das Mamães, 321, Maternidade, MG - Belo Horizonte',
+  alcoholic_drink: 'no_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'no_parking',
+  buffet_id: 2,
+  venue_preference: 'no_preference',
+  base_price: 3000,
+  additional_per_person: 100,
+  value_extra_hour: 750,
+  base_price_weekend: 4500,
+  additional_per_person_weekend: 150,
+  value_extra_hour_weekend: 1000
+)
+
+event_6 = Event.create!(
+  name: 'Festa de Noivado',
+  description: 'Celebre o noivado em grande estilo!',
+  min_people: 40,
+  max_people: 80,
+  duration: 180,
+  menu: 'Coquetel, Buffet de Finger Foods, Bebidas Variadas',
+  address: 'Av. dos Namorados, 555, Romântico, SP - Campinas',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 3,
+  venue_preference: 'no_preference',
+  base_price: 7000,
+  additional_per_person: 175,
+  value_extra_hour: 1250,
+  base_price_weekend: 10500,
+  additional_per_person_weekend: 263,
+  value_extra_hour_weekend: 1750
+)
+
+event_7 = Event.create!(
+  name: 'Festa de Halloween',
+  description: 'Uma noite de sustos e diversão!',
+  min_people: 60,
+  max_people: 120,
+  duration: 240,
+  menu: 'Petiscos Temáticos, Cocktails Especiais',
+  address: 'Rua do Medo, 13, Assombrada, RJ - Niterói',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 1,
+  venue_preference: 'no_preference',
+  base_price: 9000,
+  additional_per_person: 225,
+  value_extra_hour: 1500,
+  base_price_weekend: 13500,
+  additional_per_person_weekend: 338,
+  value_extra_hour_weekend: 2250
+)
+
+event_8 = Event.create!(
+  name: 'Festa de Reveillon',
+  description: 'Receba o novo ano com uma festa espetacular!',
+  min_people: 100,
+  max_people: 200,
+  duration: 300,
+  menu: 'Jantar de Gala, Champanhe, Buffet de Sobremesas',
+  address: 'Praia do Ano Novo, S/N, Litoral, BA - Salvador',
+  alcoholic_drink: 'yes_alcohol',
+  decoration: 'yes_decoration',
+  parking: 'yes_parking',
+  buffet_id: 2,
+  venue_preference: 'no_preference',
+  base_price: 15000,
+  additional_per_person: 375,
+  value_extra_hour: 2500,
+  base_price_weekend: 22500,
+  additional_per_person_weekend: 563,
+  value_extra_hour_weekend: 3750
 )
