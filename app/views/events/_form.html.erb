@@ -84,5 +84,10 @@
     <%= form.select :parking, Event.parkings.keys.map { |key| [key.humanize, key] } %>
   </div>
 
+  <br>
+
   <%= form.submit %>
 <% end %>
+
+<br>
+<%= link_to 'Cancel', home_buffet_profile_path %>

@@ -59,5 +59,7 @@
     <%= form.select :payment, Buffet.payments.keys.map { |key| [key.humanize, key] } %>
   </div>
 
+  <br>
+
   <%= form.submit %>
 <% end %>

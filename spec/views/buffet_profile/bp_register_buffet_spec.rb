@@ -25,20 +25,16 @@ describe 'Usuario conecta como buffet_profile' do
     click_on('Create Buffet')
 
     expect(page).not_to have_content('Register your buffet')
-    # expect(page).to have_content()
-
+    expect(page).to have_content('Buffet registered successfully')
+    expect(page).to have_link('Orders')
+    expect(page).to have_link('Register Event +')
+    expect(page).to have_content('There are no events registered for this buffet')
+    expect(page).to have_content('Buffet Real')
+    expect(page).to have_content(30994849000199)
+    expect(page).to have_content('Um buffet a altura do seu evento')
+    expect(page).to have_content('Cash')
+    expect(page).to have_link('Edit buffet')
   end
 
-  it '' do
-
-  end
-
-  it '' do
-
-  end
-
-  it '' do
-
-  end
 
 end

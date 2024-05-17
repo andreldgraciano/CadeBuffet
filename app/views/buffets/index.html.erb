@@ -1,11 +1,15 @@
 <% if @buffets.any? %>
-  <% @buffets.each do |buffet|%>
-    <section>
-      <h2> <%= link_to buffet.brand_name, buffet_path(buffet) %> </h2>
-      <p><%= Buffet.human_attribute_name(:state) %>: <%= buffet.state %></p>
-      <p><%= Buffet.human_attribute_name(:city) %>: <%= buffet.city %></p>
-    </section>
-  <% end %>
+  <div style="display: flex; gap: 40px; flex-wrap: wrap; justify-content: start;">
+    <% @buffets.each do |buffet|%>
+      <section style="display: flex; justify-content: center; align-items: center; min-width: 230px; background-color: antiquewhite; border: 2px dotted rgb(184, 170, 152); padding: 15px;">
+        <div style="text-align: center;">
+          <h2> <%= link_to buffet.brand_name, buffet_path(buffet) %> </h2>
+          <p><%= Buffet.human_attribute_name(:state) %>: <%= buffet.state %></p>
+          <p><%= Buffet.human_attribute_name(:city) %>: <%= buffet.city %></p>
+        </div>
+      </section>
+    <% end %>
+  </div>
 <% else %>
   <% if params[:query] %>
     <p>Search for "<%= params[:query] %>" not found</p>

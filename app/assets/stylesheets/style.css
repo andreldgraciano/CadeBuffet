@@ -52,3 +52,34 @@ body{
     }
   }
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #fff;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+th {
+  background-color: #f4f4f4;
+  border-bottom: 2px solid #dddddd;
+}
+
+td {
+  border-bottom: 1px solid #dddddd;
+}
+
+th {
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+td {
+  color: #333333;
+}

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Visitante a partir da home' do
-  it 'e acessa pagima para se registrar como buffet_profile' do
+  it 'e acessa pagina para se registrar como buffet_profile' do
     # Arrange
 
     visit(root_path)
@@ -32,7 +32,7 @@ describe 'Visitante a partir da home' do
     expect(page).to have_content('Register your buffet')
   end
 
-  it 'e acessa pagima para se registrar como client' do
+  it 'e acessa pagina para se registrar como client' do
     # Arrange
 
     visit(root_path)

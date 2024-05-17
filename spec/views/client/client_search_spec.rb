@@ -1,7 +1,13 @@
 require 'rails_helper'
 
-describe 'Visitante faz pesquisa' do
+describe 'Client conectado faz pesquisa' do
   it 'com sucesso' do
+    client = Client.create!(
+      email: 'andre@gmail.com',
+      name: 'André Dias',
+      cpf: 65971070045,
+      password: 'andre123@',
+    )
     buffet_profile_1 = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@',
@@ -60,6 +66,7 @@ describe 'Visitante faz pesquisa' do
       payment: 0,
     )
 
+    login_as(client, :scope => :client)
     visit(root_path)
 
     within('form#search') do
@@ -76,6 +83,12 @@ describe 'Visitante faz pesquisa' do
   end
 
   it 'não existente nos registros' do
+    client = Client.create!(
+      email: 'andre@gmail.com',
+      name: 'André Dias',
+      cpf: 65971070045,
+      password: 'andre123@',
+    )
     buffet_profile_1 = BuffetProfile.create!(
       email: 'real@gmail.com',
       password: 'real123@',
@@ -115,6 +128,7 @@ describe 'Visitante faz pesquisa' do
       payment: 0,
     )
 
+    login_as(client, :scope => :client)
     visit(root_path)
 
     within('form#search') do

@@ -15,7 +15,7 @@
     </ul>
   </section>
     
-  <section style="display: flex; gap: 1rem;">
+  <section style="display: flex; gap: 1rem; flex-wrap: wrap;">
     <% if @buffet.events.any? %>
       <% @buffet.events.each do |event|%>
       <div style="border: 2px solid rgb(191, 104, 121); padding: 1rem; margin: 1rem 0; max-width: 400px;">
