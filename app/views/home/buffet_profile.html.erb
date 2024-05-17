@@ -27,7 +27,7 @@
     <div style="display: flex; gap: 1rem; flex-wrap: wrap">
       <% if @buffet.events.any? %>
         <% @buffet.events.each do |event|%>
-        <div style="background-color: antiquewhite; border: 2px dotted rgb(184, 170, 152); padding: 1rem;">
+        <div style="background-color: antiquewhite; border: 2px dotted rgb(184, 170, 152); padding: 1rem;" id="<%= event.id %>">
           <h2><%= event.name %></h2>
           <h3><%= event.description %></h3>
           <ul>

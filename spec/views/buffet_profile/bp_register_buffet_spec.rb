@@ -36,5 +36,33 @@ describe 'Usuario conecta como buffet_profile' do
     expect(page).to have_link('Edit buffet')
   end
 
+  it 'falha ao tentar registrar o segundo buffet e volta para home' do
+    buffet_profile = BuffetProfile.create!(
+      email: 'real@gmail.com',
+      password: 'real123@',
+    )
+    buffet = Buffet.create!(
+      brand_name: 'Buffet Real',
+      corporate_name: 'Buffet Real LTDA',
+      registration_number: 84078858000169,
+      phone: 3127526712,
+      email: 'sac@buffetreal.com',
+      address: 'Praça das Tribos, 123',
+      district: 'Iguaçu',
+      state: 'MG',
+      city: 'Ipatinga',
+      zip_code: 35162133,
+      description: 'Um buffet completo para o seu evento',
+      buffet_profile_id: buffet_profile.id,
+      payment: 1
+    )
+
+    login_as(buffet_profile, :scope => :buffet_profile)
+    visit(root_path)
+    visit(new_buffet_path)
+
+    expect(current_path).to eq(home_buffet_profile_path)
+  end
+
 
 end
