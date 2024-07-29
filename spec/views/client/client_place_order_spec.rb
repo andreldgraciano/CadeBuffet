@@ -64,7 +64,7 @@ describe 'cliente faz pedido de evento' do
 
 
     expect(page).to have_content('Festa de Casamento Villa')
-    expect(page).to have_content('2024-05-24')
+    expect(page).to have_content(formatted_date)
     expect(page).to have_content('Order registered successfully')
     expect(page).to have_content('Waiting for buffet review')
     expect(page).to have_content('Cancel')

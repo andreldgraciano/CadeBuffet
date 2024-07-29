@@ -26,6 +26,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
   gem "rspec-rails"
   gem "capybara"
+  gem 'simplecov'
 end
 
 group :development do

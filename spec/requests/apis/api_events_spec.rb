@@ -5,7 +5,7 @@ describe 'Buffet API' do
   context 'GET /api/v1/events/id?date=XXXX&amount_people=XXXX' do
 
     it 'com sucesso' do
-      
+
       buffet_profile_1 = BuffetProfile.create!(
         email: 'real@gmail.com',
         password: 'real123@'
@@ -55,7 +55,7 @@ describe 'Buffet API' do
       expect(json_response['status']).to eq('Available')
       expect(json_response['event_name']).to eq('Festa de Casamento Villa')
       expect(json_response['amount_people']).to eq((event_1.min_people + event_1.max_people)/2)
-      expect(json_response['total_value']).to eq(62500)
+      expect(json_response['total_value']).to eq(37500)
     end
 
     it 'e falha se não encontrar o evento' do

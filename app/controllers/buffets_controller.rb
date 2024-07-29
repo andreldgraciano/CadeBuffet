@@ -21,10 +21,14 @@ class BuffetsController < ApplicationController
     else
       if params[:query]
         query = params[:query]
-        @buffets = Buffet.where("brand_name LIKE ? OR city LIKE ?", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
-        @buffets = Buffet.left_joins(:events).where("buffets.brand_name LIKE ? OR buffets.city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
+        # @buffets = Buffet.left_joins(:events).where("buffets.brand_name LIKE ? OR buffets.city LIKE ? OR events.name LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%").distinct.order(:brand_name)
+        @buffets = Buffet.left_joins(:events)
+                   .where("buffets.brand_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query", query: "%#{query}%")
+                   .distinct
+                   .order(:brand_name)
       else
-        @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
+        # @buffets = Buffet.all.sort_by { |buffet| buffet.brand_name }
+        @buffets = Buffet.order(:brand_name)
       end
     end
   end
