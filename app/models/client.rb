@@ -6,7 +6,7 @@ class Client < ApplicationRecord
 
   validates :name, :cpf, presence: true
   validates :cpf, uniqueness: true
-  
+
   validate :validate_cpf
 
   private
@@ -30,13 +30,13 @@ class Client < ApplicationRecord
             end
         end
     end
-    self.cpf = nil
-    return false
+    # self.cpf = nil
+    # return false
   end
 
   def validate_cpf
     if !check_cpf
-      self.errors.add(:cpf, 'deve ser um cpf valido')
+      self.errors.add(:cpf, 'must be a valid cpf')
     end
   end
 

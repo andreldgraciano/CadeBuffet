@@ -64,4 +64,23 @@ describe 'Visitante a partir da home' do
     expect(page).to have_content('André Dias')
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
+
+  it 'tenta se cadastrar com cpf invalido' do
+    # Arrange
+
+    visit(root_path)
+    within('#client_login') do
+      click_on('Sign up')
+    end
+    within('form#new_client') do
+      fill_in('Email', with: 'andre@yahoo.com')
+      fill_in('Name', with: 'André Dias')
+      fill_in('Cpf', with: '32530965553')
+      fill_in('Password', with: 'andre123@')
+      fill_in('Password confirmation', with: 'andre123@')
+      click_on('Sign up')
+    end
+
+    expect(page).to have_content('must be a valid cpf')
+  end
 end
