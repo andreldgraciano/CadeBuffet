@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/client.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/models/client.rb": {
         "lines": [
           1,
           null,
@@ -48,14 +48,14 @@
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/application_record.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/buffet_profile.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/models/buffet_profile.rb": {
         "lines": [
           1,
           null,
@@ -67,38 +67,30 @@
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/sessions_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/home_controller.rb": {
         "lines": [
+          1,
+          1,
           null,
+          1,
+          1,
+          0,
           null,
           1,
           null,
           null,
+          1,
+          0,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          0,
+          0,
+          0,
           null,
           null,
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/application_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
@@ -106,210 +98,186 @@
           1,
           null,
           1,
-          22,
+          1,
+          0,
+          1,
+          0,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/andredias/workspace/CadeBuffet/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/andredias/workspace/CadeBuffet/app/helpers/home_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffets_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/andredias/workspace/CadeBuffet/app/models/buffet.rb": {
+        "lines": [
+          1,
+          1,
           3,
-          19,
-          3,
-          null,
-          16,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/helpers/application_helper.rb": {
-        "lines": [
           1,
-          null
-        ]
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/helpers/home_helper.rb": {
-        "lines": [
+          null,
           1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/home_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/api/v1/events_buffet_controller.rb": {
         "lines": [
           1,
           1,
-          null,
           1,
-          14,
-          3,
-          null,
-          11,
+          1,
+          1,
           null,
           null,
           1,
-          3,
           null,
-          3,
-          0,
+          1,
           0,
           null,
+          null,
+          1,
+          0,
           null,
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffets_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/api/v1/api_controller.rb": {
         "lines": [
           1,
-          1,
           null,
           1,
           1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          11,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          11,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          11,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/buffet.rb": {
-        "lines": [
-          1,
-          1,
-          7,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/sessions_controller.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/event.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/models/event.rb": {
         "lines": [
           1,
           1,
@@ -324,18 +292,7 @@
           null
         ]
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/api/v1/api_controller.rb": {
-        "lines": [
-          0,
-          null,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/api/v1/buffets_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/api/v1/buffets_controller.rb": {
         "lines": [
           0,
           0,
@@ -362,30 +319,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/api/v1/events_buffet_controller.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/api/v1/events_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/api/v1/events_controller.rb": {
         "lines": [
           0,
           0,
@@ -445,7 +379,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/api/v1/search_buffet_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/api/v1/search_buffet_controller.rb": {
         "lines": [
           0,
           0,
@@ -467,7 +401,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/confirmations_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/confirmations_controller.rb": {
         "lines": [
           null,
           null,
@@ -503,7 +437,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/omniauth_callbacks_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/omniauth_callbacks_controller.rb": {
         "lines": [
           null,
           null,
@@ -539,7 +473,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/passwords_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/passwords_controller.rb": {
         "lines": [
           null,
           null,
@@ -579,7 +513,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/registrations_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/registrations_controller.rb": {
         "lines": [
           null,
           null,
@@ -647,7 +581,40 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/buffet_profiles/unlocks_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/andredias/workspace/CadeBuffet/app/controllers/buffet_profiles/unlocks_controller.rb": {
         "lines": [
           null,
           null,
@@ -683,7 +650,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/confirmations_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/confirmations_controller.rb": {
         "lines": [
           null,
           null,
@@ -719,7 +686,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/omniauth_callbacks_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/omniauth_callbacks_controller.rb": {
         "lines": [
           null,
           null,
@@ -755,7 +722,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/passwords_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/passwords_controller.rb": {
         "lines": [
           null,
           null,
@@ -795,7 +762,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/registrations_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/registrations_controller.rb": {
         "lines": [
           null,
           null,
@@ -863,7 +830,40 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/clients/unlocks_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/andredias/workspace/CadeBuffet/app/controllers/clients/unlocks_controller.rb": {
         "lines": [
           null,
           null,
@@ -899,17 +899,13 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/events_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/events_controller.rb": {
         "lines": [
           0,
           0,
           null,
           0,
           0,
-          null,
-          0,
-          null,
-          0,
           0,
           0,
           null,
@@ -920,24 +916,10 @@
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
           null,
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
           0,
           0,
           0,
@@ -951,7 +933,32 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
           null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
           0,
           0,
           0,
@@ -971,7 +978,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/controllers/orders_controller.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/controllers/orders_controller.rb": {
         "lines": [
           0,
           0,
@@ -1071,8 +1078,8 @@
           0,
           0,
           0,
-          0,
-          0,
+          null,
+          null,
           0,
           0,
           null,
@@ -1111,7 +1118,7 @@
         "branches": {
         }
       },
-      "/home/andredias/workspace/treinadev/CadeBuffet/app/models/order.rb": {
+      "/home/andredias/workspace/CadeBuffet/app/models/order.rb": {
         "lines": [
           0,
           0,
@@ -1144,6 +1151,6 @@
         }
       }
     },
-    "timestamp": 1723058669
+    "timestamp": 1726143188
   }
 }

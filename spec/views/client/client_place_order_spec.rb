@@ -62,7 +62,6 @@ describe 'cliente faz pedido de evento' do
     fill_in('Details', with: 'Quero muita decoração')
     click_on('Create Order')
 
-
     expect(page).to have_content('Festa de Casamento Villa')
     expect(page).to have_content(formatted_date)
     expect(page).to have_content('Order registered successfully')

@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :authenticate_buffet_profile!, only: [:new, :create, :edit, :update, :destroy]
 
   before_action :set_buffet, only: [:new, :create, :edit, :update, :destroy]
+  before_action :buffet_profile, only: [:new, :create] # Adiciona o filtro aqui
   before_action :set_event, only: [:edit, :update, :destroy]
-
   before_action :authorize_buffet_profile_edit_update_destroy_own_event, only: [:edit, :update, :destroy]
 
   def new
@@ -44,13 +44,20 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    if @event = current_buffet_profile.buffet.events.find_by(id: params[:id])
-      return @event = current_buffet_profile.buffet.events.find_by(id: params[:id])
-    end
+    @event = current_buffet_profile.buffet.events.find_by(id: params[:id])
   end
 
   def set_buffet
     @buffet = current_buffet_profile.buffet
+  end
+
+  def buffet_profile
+    @buffet = Buffet.find_by(buffet_profile_id: current_buffet_profile.id)
+
+    unless @buffet
+      flash[:notice] = 'Register your buffet'
+      redirect_to new_buffet_path
+    end
   end
 
   def event_params

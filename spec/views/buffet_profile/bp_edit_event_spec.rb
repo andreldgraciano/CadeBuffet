@@ -65,6 +65,94 @@ describe 'profile buffet atualiza dados de um evento' do
     end
   end
 
+  it 'falha ao tentar editar evento de outro buffet' do
+
+    buffet_profile_1 = BuffetProfile.create!(
+      email: 'real@gmail.com',
+      password: 'real123@'
+    )
+    buffet_1 = Buffet.create!(
+      brand_name: 'Buffet Real',
+      corporate_name: 'Buffet Real LTDA',
+      registration_number: 84078858000169,
+      phone: 3127526712,
+      email: 'sac@buffetreal.com',
+      address: 'Praça das Tribos, 123',
+      district: 'Iguaçu',
+      state: 'MG',
+      city: 'Ipatinga',
+      zip_code: 35162133,
+      description: 'Um buffet completo para o seu evento',
+      buffet_profile_id: buffet_profile_1.id,
+      payment: 1
+    )
+    event_1 = Event.create!(
+      name: 'Festa de Casamento Villa',
+      description: 'Garantimos um dia inesquecivel para o casal',
+      min_people: 150,
+      max_people: 250,
+      duration: 240,
+      menu: 'Salgados, Refrigerante, Suco, Cerveja, Prato Principal',
+      address: 'Rua das Palmeiras, 61, Esplanada, MG - Ipatinga',
+      alcoholic_drink: 'yes_alcohol',
+      decoration: 'yes_decoration',
+      parking: 'yes_parking',
+      buffet_id: buffet_1.id,
+      venue_preference: 'no_preference',
+      base_price: 15000,
+      additional_per_person: 450,
+      value_extra_hour: 3000,
+      base_price_weekend: 25000,
+      additional_per_person_weekend: 750,
+      value_extra_hour_weekend: 5000
+    )
+    buffet_profile_2 = BuffetProfile.create!(
+      email: 'elegance@gmail.com',
+      password: 'elegance123@'
+    )
+    buffet_2 = Buffet.create!(
+      brand_name: 'Buffet Elegance',
+      corporate_name: 'Buffet Elegance LTDA',
+      registration_number: 84078852340169,
+      phone: 3187464712,
+      email: 'sac@buffetelegance.com',
+      address: 'Praça das Rosas, 33',
+      district: 'Centro',
+      state: 'MG',
+      city: 'Caratinga',
+      zip_code: 15314213,
+      description: 'Um buffet completo para o seu evento',
+      buffet_profile_id: buffet_profile_2.id,
+      payment: 1
+    )
+    event_2 = Event.create!(
+      name: 'Churrasco',
+      description: 'Garantimos um dia inesquecivel para o casal',
+      min_people: 150,
+      max_people: 250,
+      duration: 240,
+      menu: 'Salgados, Refrigerante, Suco, Cerveja, Prato Principal',
+      address: 'Rua das Palmeiras, 61, Esplanada, MG - Ipatinga',
+      alcoholic_drink: 'yes_alcohol',
+      decoration: 'yes_decoration',
+      parking: 'yes_parking',
+      buffet_id: buffet_2.id,
+      venue_preference: 'no_preference',
+      base_price: 15000,
+      additional_per_person: 450,
+      value_extra_hour: 3000,
+      base_price_weekend: 25000,
+      additional_per_person_weekend: 750,
+      value_extra_hour_weekend: 5000
+    )
+
+    login_as(buffet_profile_2, :scope => :buffet_profile)
+    visit(root_path)
+    visit(edit_event_path(1))
+
+    expect(page).to have_content("You are not allowed to manipulate other buffets")
+  end
+
   it 'e falha por deixar campos em branco' do
 
     buffet_profile = BuffetProfile.create!(

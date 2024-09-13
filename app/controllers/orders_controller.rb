@@ -94,10 +94,10 @@ class OrdersController < ApplicationController
   def set_orders
     if client_signed_in?
       @orders = Order.where(client_id: current_client.id)
-    elsif buffet_profile_signed_in?
+    else buffet_profile_signed_in?
       @orders = Order.where(buffet_id: current_buffet_profile.buffet)
-    else
-      redirect_to root_path
+    # else
+    #   redirect_to root_path
     end
   end
 

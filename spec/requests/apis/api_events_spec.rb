@@ -4,7 +4,7 @@ describe 'Buffet API' do
 
   context 'GET /api/v1/events/id?date=XXXX&amount_people=XXXX' do
 
-    it 'com sucesso' do
+    it 'dia se semana com sucesso' do
 
       buffet_profile_1 = BuffetProfile.create!(
         email: 'real@gmail.com',
@@ -45,7 +45,7 @@ describe 'Buffet API' do
         additional_per_person_weekend: 750,
         value_extra_hour_weekend: 5000
       )
-      date = Date.tomorrow
+      date = Date.today + ((8 - Date.today.wday) % 7)
 
       get("/api/v1/events/1?date=#{date.year}-#{date.month}-#{date.day}&amount_people=#{(event_1.min_people + event_1.max_people)/2}")
 
@@ -56,6 +56,60 @@ describe 'Buffet API' do
       expect(json_response['event_name']).to eq('Festa de Casamento Villa')
       expect(json_response['amount_people']).to eq((event_1.min_people + event_1.max_people)/2)
       expect(json_response['total_value']).to eq(37500)
+    end
+
+    it 'final de semana com sucesso' do
+
+      buffet_profile_1 = BuffetProfile.create!(
+        email: 'real@gmail.com',
+        password: 'real123@'
+      )
+      buffet_1 = Buffet.create!(
+        brand_name: 'Buffet Real',
+        corporate_name: 'Buffet Real LTDA',
+        registration_number: 84078858000169,
+        phone: 3127526712,
+        email: 'sac@buffetreal.com',
+        address: 'Praça das Tribos, 123',
+        district: 'Iguaçu',
+        state: 'MG',
+        city: 'Ipatinga',
+        zip_code: 35162133,
+        description: 'Um buffet completo para o seu evento',
+        buffet_profile_id: buffet_profile_1.id,
+        payment: 1
+      )
+      event_1 = Event.create!(
+        name: 'Festa de Casamento Villa',
+        description: 'Garantimos um dia inesquecivel para o casal',
+        min_people: 150,
+        max_people: 250,
+        duration: 240,
+        menu: 'Salgados, Refrigerante, Suco, Cerveja, Prato Principal',
+        address: 'Rua das Palmeiras, 61, Esplanada, MG - Ipatinga',
+        alcoholic_drink: 'yes_alcohol',
+        decoration: 'yes_decoration',
+        parking: 'yes_parking',
+        buffet_id: 1,
+        venue_preference: 'no_preference',
+        base_price: 15000,
+        additional_per_person: 450,
+        value_extra_hour: 3000,
+        base_price_weekend: 25000,
+        additional_per_person_weekend: 750,
+        value_extra_hour_weekend: 5000
+      )
+      date = Date.today + ((6 - Date.today.wday) % 7)
+
+      get("/api/v1/events/1?date=#{date.year}-#{date.month}-#{date.day}&amount_people=#{(event_1.min_people + event_1.max_people)/2}")
+
+      expect(response.status).to eq(200)
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response['status']).to eq('Available')
+      expect(json_response['event_name']).to eq('Festa de Casamento Villa')
+      expect(json_response['amount_people']).to eq((event_1.min_people + event_1.max_people)/2)
+      expect(json_response['total_value']).to eq(62500)
     end
 
     it 'e falha se não encontrar o evento' do
